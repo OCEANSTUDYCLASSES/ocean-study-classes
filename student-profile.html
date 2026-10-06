@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Profile | Ocean Study Classes</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    min-height:100vh;
+    background:#f3f6fb;
+    color:#18243a;
+}
+
+/* HEADER */
+
+.header{
+    background:linear-gradient(135deg,#041b43,#063b91);
+    color:white;
+    padding:18px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+
+.brand{
+    font-size:24px;
+    font-weight:800;
+}
+
+.brand small{
+    display:block;
+    font-size:12px;
+    font-weight:400;
+    margin-top:3px;
+}
+
+.logout-btn{
+    background:#ffc400;
+    color:#111;
+    border:none;
+    padding:11px 20px;
+    border-radius:8px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.logout-btn:hover{
+    background:#ffdb4d;
+}
+
+/* MAIN */
+
+.container{
+    max-width:1100px;
+    margin:35px auto;
+    padding:0 20px;
+}
+
+/* WELCOME */
+
+.welcome{
+    background:white;
+    border-radius:18px;
+    padding:30px;
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+    margin-bottom:25px;
+}
+
+.welcome h1{
+    color:#041b43;
+    margin-bottom:8px;
+}
+
+.welcome p{
+    color:#68748a;
+}
+
+/* PROFILE */
+
+.profile{
+    display:grid;
+    grid-template-columns:300px 1fr;
+    gap:25px;
+    margin-bottom:25px;
+}
+
+.profile-card,
+.info-card{
+    background:white;
+    border-radius:18px;
+    padding:28px;
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+}
+
+.profile-card{
+    text-align:center;
+}
+
+.profile-logo{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    object-fit:contain;
+    margin-bottom:15px;
+}
+
+.profile-card h2{
+    color:#041b43;
+    margin-bottom:8px;
+}
+
+.email{
+    color:#68748a;
+    font-size:14px;
+    word-break:break-word;
+}
+
+.info-card h2{
+    color:#041b43;
+    margin-bottom:20px;
+}
+
+.info-row{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 0;
+    border-bottom:1px solid #edf0f5;
+}
+
+.info-row:last-child{
+    border-bottom:none;
+}
+
+.info-label{
+    font-weight:700;
+}
+
+.info-value{
+    color:#063b91;
+}
+
+/* DASHBOARD */
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+    gap:18px;
+    width:100%;
+}
+.dashboard-card{
+    background:white;
+    padding:25px 18px;
+    border-radius:16px;
+    text-align:center;
+    box-shadow:0 8px 25px rgba(0,0,0,.07);
+    cursor:pointer;
+    transition:.2s;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+}
+
+.icon{
+    font-size:34px;
+    margin-bottom:12px;
+}
+
+.dashboard-card h3{
+    color:#041b43;
+    margin-bottom:6px;
+}
+
+.dashboard-card p{
+    color:#68748a;
+    font-size:13px;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    padding:30px 20px;
+    color:#777;
+    font-size:13px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .profile{
+        grid-template-columns:1fr;
+    }
+
+    .dashboard{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:500px){
+
+    .header{
+        padding:15px;
+    }
+
+    .brand{
+        font-size:18px;
+    }
+
+    .logout-btn{
+        padding:9px 13px;
+    }
+
+    .container{
+        margin:20px auto;
+    }
+
+    .welcome{
+        padding:22px;
+    }
+
+    .dashboard{
+        grid-template-columns:1fr;
+    }
+
+    .info-row{
+        flex-direction:column;
+        gap:5px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="brand">
+        Ocean Study Classes
+        <small>Your Success Our Passion</small>
+    </div>
+
+    <button class="logout-btn" id="logoutBtn">
+        LOGOUT
+    </button>
+
+</header>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <!-- WELCOME -->
+
+    <section class="welcome">
+
+        <h1 id="welcomeName">
+            Welcome Student 👋
+        </h1>
+
+        <p>
+            Welcome to your Ocean Study Classes student dashboard.
+        </p>
+
+    </section>
+
+
+    <!-- PROFILE -->
+
+    <section class="profile">
+
+
+        <div class="profile-card">
+
+            <img
+                src="images/logo.png"
+                class="profile-logo"
+                alt="Ocean Study Classes"
+            >
+
+            <h2 id="studentName">
+                Student
+            </h2>
+
+            <p class="email" id="studentEmail">
+                Loading...
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <h2>Student Information</h2>
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Name
+                </span>
+
+                <span class="info-value" id="nameValue">
+                    Student
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Email
+                </span>
+
+                <span class="info-value" id="emailValue">
+                    Loading...
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Institute
+                </span>
+
+                <span class="info-value">
+                    Ocean Study Classes
+                </span>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span class="info-label">
+                    Status
+                </span>
+
+                <span class="info-value">
+                    Active Student
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DASHBOARD -->
+
+    <section class="dashboard">
+
+
+        <div class="dashboard-card" onclick="window.location.href='online-test.html'">
+
+            <div class="icon">📝</div>
+
+            <h3>Online Tests</h3>
+
+            <p>
+                Attempt your online tests
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card" onclick="openCourses()">
+
+            <div class="icon">📚</div>
+
+            <h3>My Courses</h3>
+
+            <p>
+                View your courses
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card" onclick="openAttendance()">
+
+            <div class="icon">📅</div>
+
+            <h3>Attendance</h3>
+
+            <p>
+                Check your attendance
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card" onclick="openResults()">
+
+            <div class="icon">📊</div>
+
+            <h3>Results</h3>
+
+            <p>
+                View your test results
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    OCEAN STUDY CLASSES<br>
+    Your Success Our Passion
+
+</footer>
+
+
+
+<script type="module">
+
+/* FIREBASE */
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import {
+    getFirestore,
+    doc,
+    getDoc
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+import {
+    getAuth,
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+/* FIREBASE CONFIG */
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyAegv8Y_0KgMyjwQIt_ZXqb9_5PNj5TufY",
+
+    authDomain: "ocean-study-classes.firebaseapp.com",
+
+    projectId: "ocean-study-classes",
+
+    storageBucket: "ocean-study-classes.firebasestorage.app",
+
+    messagingSenderId: "549818570531",
+
+    appId: "1:549818570531:web:355ec0212ab1ff984e1e96",
+
+    measurementId: "G-35V3E056Z"
+
+};
+
+
+/* INITIALIZE */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+
+/* CHECK LOGIN */
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+
+        window.location.href = "student-login.html";
+        return;
+
+    }
+
+    try {
+
+        const email = user.email || "";
+
+        // Firestore se student document
+        const studentRef = doc(db, "students", user.uid);
+
+        const studentSnap = await getDoc(studentRef);
+
+        let name = "";
+
+        if (studentSnap.exists()) {
+
+            const studentData = studentSnap.data();
+
+            name = studentData.name || "";
+
+        }
+
+        // Agar Firestore me name nahi mila
+        if (!name) {
+
+            name = email.split("@")[0];
+
+        }
+
+        // Dashboard par student name
+        document.getElementById("welcomeName")
+        .textContent = "Welcome " + name + " 👋";
+
+        document.getElementById("studentName")
+        .textContent = name;
+
+        document.getElementById("nameValue")
+        .textContent = name;
+
+        document.getElementById("studentEmail")
+        .textContent = email;
+
+        document.getElementById("emailValue")
+        .textContent = email;
+
+    }
+
+    catch (error) {
+
+        console.error("Profile error:", error);
+
+        alert("Student profile load nahi ho saka.");
+
+    }
+
+});
+
+
+
+/* LOGOUT */
+
+document
+.getElementById("logoutBtn")
+.addEventListener("click", async () => {
+
+    try{
+
+        await signOut(auth);
+
+        window.location.href =
+        "student-login.html";
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert("Logout failed.");
+
+    }
+
+});
+
+
+/* DASHBOARD BUTTONS */
+
+function openTests(){
+
+    window.location.href =
+    "online-test.html";
+
+}
+
+
+function openCourses(){
+
+    alert(
+        "My Courses section will be added next."
+    );
+
+}
+
+
+function openAttendance(){
+
+    alert(
+        "Attendance section will be added next."
+    );
+
+}
+
+
+function openResults(){
+
+    alert(
+        "Results section will be added next."
+    );
+
+}
+
+</script>
+
+</body>
+</html>

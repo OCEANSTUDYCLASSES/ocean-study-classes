@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>UPPSC / UPPCS Foundation Course | Ocean Study Classes</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --blue: #063b91;
+      --dark-blue: #041b43;
+      --yellow: #ffc400;
+      --light: #f4f7fc;
+      --text: #18243a;
+      --muted: #68748a;
+      --white: #ffffff;
+      --border: #e2e7ef;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: white;
+      box-shadow: 0 3px 18px rgba(0,0,0,.10);
+    }
+
+    .header-inner {
+      max-width: 1150px;
+      margin: auto;
+      padding: 13px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--blue);
+      font-weight: 900;
+      font-size: 20px;
+    }
+
+    .logo {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .back-btn {
+      text-decoration: none;
+      background: var(--blue);
+      color: white;
+      padding: 10px 17px;
+      border-radius: 8px;
+      font-weight: 800;
+    }
+
+    .hero {
+      background: linear-gradient(120deg, var(--dark-blue), var(--blue));
+      color: white;
+      padding: 75px 20px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,.35);
+      background: rgba(255,255,255,.10);
+      color: var(--yellow);
+      padding: 7px 15px;
+      border-radius: 30px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 58px);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .hero p {
+      max-width: 800px;
+      margin: auto;
+      color: #dce7fa;
+      font-size: 18px;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 55px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .section-title h2 {
+      color: var(--dark-blue);
+      font-size: 34px;
+      margin-bottom: 6px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 17px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 25px rgba(0,0,0,.06);
+      margin-bottom: 28px;
+    }
+
+    .box h3 {
+      color: var(--blue);
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .box p {
+      margin: 10px 0;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 25px rgba(0,0,0,.05);
+    }
+
+    .card h3 {
+      color: var(--blue);
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    .card ul {
+      list-style: none;
+    }
+
+    .card li {
+      margin: 9px 0;
+    }
+
+    .stage {
+      text-align: center;
+      border-top: 5px solid var(--yellow);
+    }
+
+    .stage-number {
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .stage-name {
+      color: var(--dark-blue);
+      font-size: 28px;
+      font-weight: 900;
+      margin: 5px 0;
+    }
+
+    .subject-list {
+      columns: 2;
+      column-gap: 40px;
+      list-style: none;
+    }
+
+    .subject-list li {
+      break-inside: avoid;
+      padding: 8px 0;
+      border-bottom: 1px solid #edf0f5;
+    }
+
+    .note {
+      background: #fff8d9;
+      border-left: 5px solid var(--yellow);
+      padding: 17px 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .fee-box {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .fee-card {
+      background: white;
+      padding: 25px;
+      text-align: center;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 25px rgba(0,0,0,.05);
+    }
+
+    .fee-card h3 {
+      color: var(--blue);
+    }
+
+    .fee {
+      font-size: 30px;
+      font-weight: 900;
+      color: var(--dark-blue);
+      margin: 10px 0;
+    }
+
+    .course-highlights {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .highlight {
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .highlight-icon {
+      font-size: 32px;
+      margin-bottom: 7px;
+    }
+
+    .highlight h3 {
+      color: var(--blue);
+      font-size: 18px;
+    }
+
+    .admission {
+      text-align: center;
+      background: var(--dark-blue);
+      color: white;
+      border-radius: 20px;
+      padding: 45px 25px;
+      margin-top: 40px;
+    }
+
+    .admission h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 13px 24px;
+      border-radius: 8px;
+      background: var(--yellow);
+      color: #111;
+      text-decoration: none;
+      font-weight: 900;
+    }
+
+    .btn-blue {
+      background: var(--blue);
+      color: white;
+    }
+
+    footer {
+      background: #03142f;
+      color: #d6e0f1;
+      text-align: center;
+      padding: 35px 20px;
+    }
+
+    footer h2 {
+      color: white;
+      margin-bottom: 6px;
+    }
+
+    footer .motto {
+      color: var(--yellow);
+      font-weight: 800;
+    }
+
+    @media (max-width: 850px) {
+      .grid-3,
+      .fee-box,
+      .course-highlights {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-inner {
+        flex-direction: column;
+      }
+
+      .brand {
+        font-size: 16px;
+      }
+
+      .grid-3,
+      .fee-box,
+      .course-highlights {
+        grid-template-columns: 1fr;
+      }
+
+      .subject-list {
+        columns: 1;
+      }
+
+      .hero {
+        padding: 55px 18px;
+      }
+
+      .container {
+        padding: 45px 16px;
+      }
+
+      .box,
+      .card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <div class="brand">
+      <img src="images/logo.png" class="logo" alt="Ocean Study Classes Logo">
+      OCEAN STUDY CLASSES
+    </div>
+
+    <a href="javascript:history.back();" class="back-btn">
+  ← Back to Home
+</a>
+
+  </div>
+</header>
+
+
+<section class="hero">
+
+  <span class="hero-badge">UPPSC • UPPCS • PRELIMS • MAINS</span>
+
+  <h1>UPPSC Foundation Course</h1>
+
+  <p>
+    Complete Prelims + Mains preparation with structured classes,
+    study material, regular practice and test-based preparation.
+  </p>
+
+</section>
+
+
+<section class="container">
+
+  <!-- ABOUT -->
+  <div class="section-title">
+    <h2>About UPPSC / UPPCS</h2>
+    <p>Understand the examination before starting your preparation.</p>
+  </div>
+
+  <div class="box">
+
+    <h3>What is UPPSC?</h3>
+
+    <p>
+      Uttar Pradesh Public Service Commission (UPPSC), Prayagraj,
+      conducts recruitment examinations for various posts and services
+      under the Government of Uttar Pradesh.
+    </p>
+
+    <p>
+      The Combined State / Upper Subordinate Services Examination,
+      commonly known as UPPCS, is one of the major examinations
+      conducted by UPPSC.
+    </p>
+
+    <p>
+      The official UPPSC website publishes examination notices,
+      question papers, results, marksheets and other candidate-related
+      information. Candidates should always check the latest official
+      notification for the applicable recruitment rules.
+    </p>
+
+  </div>
+
+
+  <!-- EXAM STAGES -->
+  <div class="section-title">
+    <h2>UPPSC / UPPCS Examination Stages</h2>
+    <p>The recruitment process is conducted through stages prescribed in the applicable notification.</p>
+  </div>
+
+  <div class="grid-3">
+
+    <div class="card stage">
+      <div class="stage-number">Stage 1</div>
+      <div class="stage-name">Prelims</div>
+      <p>Preliminary Examination</p>
+      <p>Objective-type screening stage.</p>
+    </div>
+
+    <div class="card stage">
+      <div class="stage-number">Stage 2</div>
+      <div class="stage-name">Mains</div>
+      <p>Main Written Examination</p>
+      <p>Descriptive written examination.</p>
+    </div>
+
+    <div class="card stage">
+      <div class="stage-number">Stage 3</div>
+      <div class="stage-name">Interview</div>
+      <p>Personality Test / Interview</p>
+      <p>For candidates qualifying as per the applicable rules.</p>
+    </div>
+
+  </div>
+
+
+  <!-- COURSE OVERVIEW -->
+  <div class="section-title" style="margin-top:55px;">
+    <h2>Ocean Study Classes – UPPSC Course</h2>
+    <p>Our one-year foundation program.</p>
+  </div>
+
+  <div class="box">
+
+    <h3>Course Overview</h3>
+
+    <ul class="subject-list">
+      <li>✓ Prelims + Mains Preparation</li>
+      <li>✓ Complete 1 Year Course</li>
+      <li>✓ 20 Tests</li>
+      <li>✓ Exam-Oriented Classes</li>
+      <li>✓ Regular Practice</li>
+      <li>✓ Study Material</li>
+      <li>✓ Topic-wise Revision</li>
+      <li>✓ Test-based Performance Practice</li>
+    </ul>
+
+  </div>
+
+
+  <!-- PRELIMS -->
+  <div class="section-title" style="margin-top:55px;">
+    <h2>UPPSC Prelims – Preparation Areas</h2>
+    <p>Major areas to be covered during preparation.</p>
+  </div>
+
+  <div class="grid-2">
+
+    <div class="card">
+      <h3>General Studies – I</h3>
+      <ul>
+        <li>✓ History of India & Indian National Movement</li>
+        <li>✓ Indian & World Geography</li>
+        <li>✓ Indian Polity & Governance</li>
+        <li>✓ Economic & Social Development</li>
+        <li>✓ General Science</li>
+        <li>✓ Current Events of National & International Importance</li>
+        <li>✓ Special focus on Uttar Pradesh-related knowledge</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>General Studies – II / CSAT</h3>
+      <ul>
+        <li>✓ Comprehension</li>
+        <li>✓ Communication & Interpersonal Skills</li>
+        <li>✓ Logical & Analytical Ability</li>
+        <li>✓ Decision Making & Problem Solving</li>
+        <li>✓ General Mental Ability</li>
+        <li>✓ Elementary Mathematics</li>
+        <li>✓ Data Interpretation</li>
+      </ul>
+    </div>
+
+  </div>
+
+
+  <!-- MAINS -->
+  <div class="section-title" style="margin-top:55px;">
+    <h2>UPPSC Mains – Major Papers</h2>
+    <p>Preparation is aligned with the papers appearing in the applicable UPPCS mains examination.</p>
+  </div>
+
+  <div class="grid-2">
+
+    <div class="card">
+      <h3>Compulsory Papers</h3>
+      <ul>
+        <li>✓ General Hindi</li>
+        <li>✓ Essay</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>General Studies Papers</h3>
+      <ul>
+        <li>✓ General Studies – I</li>
+        <li>✓ General Studies – II</li>
+        <li>✓ General Studies – III</li>
+        <li>✓ General Studies – IV</li>
+        <li>✓ General Studies – V</li>
+        <li>✓ General Studies – VI</li>
+      </ul>
+    </div>
+
+  </div>
+
+
+  <!-- MAINS FOCUS -->
+  <div class="box" style="margin-top:25px;">
+
+    <h3>Mains Preparation Focus</h3>
+
+    <ul class="subject-list">
+      <li>✓ Indian History & Culture</li>
+      <li>✓ Constitution & Governance</li>
+      <li>✓ Indian Society</li>
+      <li>✓ Geography</li>
+      <li>✓ Indian Economy</li>
+      <li>✓ Science & Technology</li>
+      <li>✓ Environment & Ecology</li>
+      <li>✓ Ethics & Values</li>
+      <li>✓ Uttar Pradesh-specific topics</li>
+      <li>✓ Current Affairs</li>
+    </ul>
+
+  </div>
+
+
+  <!-- WHY COURSE -->
+  <div class="section-title" style="margin-top:55px;">
+    <h2>Why Join Our UPPSC Course?</h2>
+    <p>A structured approach for long-term preparation.</p>
+  </div>
+
+  <div class="course-highlights">
+
+    <div class="highlight">
+      <div class="highlight-icon">👨‍🏫</div>
+      <h3>Expert Guidance</h3>
+      <p>Concept-focused teaching.</p>
+    </div>
+
+    <div class="highlight">
+      <div class="highlight-icon">📝</div>
+      <h3>20 Tests</h3>
+      <p>Regular test practice.</p>
+    </div>
+
+    <div class="highlight">
+      <div class="highlight-icon">📚</div>
+      <h3>Study Material</h3>
+      <p>Exam-oriented material.</p>
+    </div>
+
+    <div class="highlight">
+      <div class="highlight-icon">🎯</div>
+      <h3>Revision</h3>
+      <p>Topic-wise revision support.</p>
+    </div>
+
+  </div>
+
+
+  <!-- FEE -->
+  <div class="section-title" style="margin-top:55px;">
+    <h2>Fee Structure</h2>
+    <p>Ocean Study Classes UPPSC Foundation Course</p>
+  </div>
+
+  <div class="fee-box">
+
+    <div class="fee-card">
+      <h3>Full Course Fee</h3>
+      <div class="fee">₹40,000</div>
+      <p>Complete 1 Year Course</p>
+    </div>
+
+    <div class="fee-card">
+      <h3>First Registration</h3>
+      <div class="fee">₹6,000</div>
+      <p>At the time of admission</p>
+    </div>
+
+    <div class="fee-card">
+      <h3>Monthly Installment</h3>
+      <div class="fee">₹4,000</div>
+      <p>Monthly payment option</p>
+    </div>
+
+  </div>
+
+
+  <!-- IMPORTANT NOTE -->
+  <div class="note">
+    <strong>Important:</strong>
+    Examination dates, vacancies, eligibility conditions, age limits,
+    paper pattern and other recruitment rules can change according to
+    the latest UPPSC notification. Students should verify the latest
+    official notification before applying.
+  </div>
+
+
+  <!-- ADMISSION -->
+  <div class="admission">
+
+    <h2>Start Your UPPSC Preparation</h2>
+
+    <p>
+      Contact Ocean Study Classes for admission, batch timings,
+      course details and fee information.
+    </p>
+
+    <a href="tel:7048918075" class="btn">
+      📞 Call for Admission
+    </a>
+
+    <a
+      href="https://wa.me/917048918075"
+      target="_blank"
+      class="btn"
+      style="margin-left:8px;">
+      WhatsApp Us
+    </a>
+
+    <br>
+
+    <a
+      href="https://uppsc.up.nic.in/"
+      target="_blank"
+      class="btn btn-blue">
+      Official UPPSC Website →
+    </a>
+
+  </div>
+
+</section>
+
+
+<footer>
+
+  <h2>OCEAN STUDY CLASSES</h2>
+
+  <p class="motto">Your Success Our Passion</p>
+
+  <p style="margin-top:10px;">
+    Opp. ASM Polytechnic, Krishna Vihar, Mathura (UP)
+  </p>
+
+  <p style="margin-top:15px;">
+    📞 7048918075
+  </p>
+
+  <p style="margin-top:15px;font-size:13px;">
+    © 2026 Ocean Study Classes. All Rights Reserved.
+  </p>
+
+</footer>
+
+</body>
+</html>

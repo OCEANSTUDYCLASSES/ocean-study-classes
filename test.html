@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ocean Study Classes - SSC CGL 2025 Tier 1 Test 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #0284c7;
+  --primary-dark: #0369a1;
+  --nav-bg: #0b2545;
+  --bg: #f1f5f9;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border: #cbd5e1;
+  --green: #16a34a;
+  --red: #dc2626;
+  --purple: #7c3aed;
+  --gray: #94a3b8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+body { background-color: var(--bg); color: var(--text-main); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+/* Header */
+header {
+  background: var(--nav-bg);
+  color: #fff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 3px solid var(--primary);
+  flex-shrink: 0;
+}
+.brand-title { font-size: 1.2rem; font-weight: 700; color: #38bdf8; display: flex; align-items: center; gap: 8px; }
+.brand-sub { font-size: 0.72rem; color: #94a3b8; }
+.header-meta { display: flex; align-items: center; gap: 14px; }
+.lang-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.1);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #38bdf8;
+  font-size: 0.8rem;
+  color: #fff;
+}
+.lang-selector select {
+  background: #0b2545;
+  color: #fff;
+  border: 1px solid #38bdf8;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+}
+.timer-box {
+  background: #000;
+  border: 1px solid #38bdf8;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #38bdf8;
+  letter-spacing: 1px;
+}
+.timer-box.warning { border-color: var(--red); color: #f87171; animation: blink 1s infinite; }
+@keyframes blink { 50% { opacity: 0.6; } }
+
+/* INSTRUCTIONS SCREEN */
+#instructionsScreen {
+  position: absolute;
+  top: 55px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 500;
+  overflow-y: auto;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.inst-header-box { border-bottom: 2px solid #e2e8f0; padding-bottom: 12px; margin-bottom: 20px; }
+.inst-title { font-size: 1.4rem; font-weight: 700; color: #0b2545; }
+.inst-meta { font-size: 0.9rem; color: #475569; margin-top: 4px; display: flex; gap: 24px; font-weight: 600; }
+.inst-body { font-size: 0.92rem; line-height: 1.7; color: #334155; flex: 1; }
+.inst-body h3 { font-size: 1.1rem; color: #0f172a; margin: 16px 0 8px; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; }
+.inst-palette-table { margin: 12px 0; border-collapse: collapse; }
+.inst-palette-table td { padding: 6px 10px; font-size: 0.88rem; }
+.badge-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+.bg-ans { background: var(--green); }
+.bg-not-ans { background: var(--red); }
+.bg-not-vis { background: #fff; border: 1px solid #94a3b8; color: #000; }
+.bg-review { background: var(--purple); border-radius: 50%; }
+.bg-ans-review { background: var(--purple); position: relative; border-radius: 4px; }
+.bg-ans-review::after {
+  content: '✔';
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  font-size: 0.65rem;
+  color: #4ade80;
+}
+.inst-declaration {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  padding: 16px;
+  border-radius: 8px;
+  margin: 20px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.inst-declaration input { margin-top: 4px; width: 18px; height: 18px; cursor: pointer; }
+.inst-declaration label { font-size: 0.85rem; color: #1e293b; cursor: pointer; }
+
+/* Test Screen Navigation */
+.section-nav {
+  background: #fff;
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  padding: 0 16px;
+  gap: 8px;
+  overflow-x: auto;
+  flex-shrink: 0;
+}
+.sec-tab {
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.sec-tab.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  background-color: #f0f9ff;
+}
+
+/* Exam Layout */
+.main-wrapper { display: flex; flex: 1; overflow: hidden; }
+.exam-area { flex: 1; display: flex; flex-direction: column; background: #fff; overflow-y: auto; padding: 20px 24px; position: relative; }
+.side-panel { width: 310px; background: #f8fafc; border-left: 1px solid var(--border); display: flex; flex-direction: column; flex-shrink: 0; }
+
+.q-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 16px; }
+.q-title { font-size: 1.05rem; font-weight: 700; color: #0f172a; }
+.marking-tag { font-size: 0.78rem; background: #e0f2fe; color: var(--primary-dark); padding: 4px 8px; border-radius: 4px; font-weight: 600; }
+.q-text { font-size: 1.05rem; line-height: 1.6; margin-bottom: 18px; color: #1e293b; white-space: pre-wrap; }
+
+.options-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+.opt-label {
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.2s;
+}
+.opt-label:hover { border-color: var(--primary); background: #f0f9ff; }
+.opt-label input { margin-right: 12px; accent-color: var(--primary); width: 18px; height: 18px; }
+
+.action-footer { background: #fff; border-top: 1px solid var(--border); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+.btn { padding: 9px 18px; border-radius: 6px; font-weight: 600; font-size: 0.85rem; cursor: pointer; border: 1px solid transparent; }
+.btn-outline { border-color: var(--border); background: #fff; color: var(--text-main); }
+.btn-purple { background: var(--purple); color: #fff; }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-green { background: var(--green); color: #fff; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.legend-box { padding: 12px; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 0.7rem; font-weight: 600; background: #fff; }
+.legend-item { display: flex; align-items: center; gap: 6px; }
+
+.palette-grid-wrap { flex: 1; overflow-y: auto; padding: 12px; }
+.palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.p-btn { aspect-ratio: 1; border-radius: 6px; border: 1px solid var(--border); background: #e2e8f0; font-weight: 700; font-size: 0.8rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.p-btn.active { outline: 2px solid var(--primary); outline-offset: 1px; }
+.p-btn.answered { background: var(--green); color: #fff; border-color: var(--green); }
+.p-btn.not-answered { background: var(--red); color: #fff; border-color: var(--red); }
+.p-btn.review { background: var(--purple); color: #fff; border-radius: 50%; }
+.p-btn.ans-review { background: var(--purple); color: #fff; position: relative; }
+.p-btn.ans-review::after { content: ''; position: absolute; bottom: 2px; right: 2px; width: 6px; height: 6px; background: #4ade80; border-radius: 50%; }
+
+/* Modal Result & Review */
+.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1000; align-items: center; justify-content: center; padding: 16px; }
+.modal-content { background: #fff; border-radius: 12px; max-width: 900px; width: 100%; max-height: 92vh; overflow-y: auto; padding: 24px; }
+.modal-title { font-size: 1.3rem; font-weight: 700; color: #0f172a; margin-bottom: 12px; }
+.stat-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+.stat-card { background: #f8fafc; padding: 12px; border-radius: 8px; text-align: center; border: 1px solid var(--border); }
+.stat-card h4 { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 4px; }
+.stat-card p { font-size: 1.25rem; font-weight: 700; color: var(--primary); }
+table { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: 0.85rem; }
+th, td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: center; }
+th { background: #f1f5f9; font-weight: 600; }
+
+.sol-container { margin-top: 24px; border-top: 2px dashed #cbd5e1; padding-top: 18px; display: none; }
+.sol-filter-bar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.sol-card { border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px; margin-bottom: 14px; background: #fafafa; }
+.sol-card.correct { border-left: 5px solid var(--green); }
+.sol-card.incorrect { border-left: 5px solid var(--red); }
+.sol-card.skipped { border-left: 5px solid var(--gray); }
+.sol-header { display: flex; justify-content: space-between; font-weight: 700; font-size: 0.88rem; margin-bottom: 8px; }
+.sol-detail { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 10px; border-radius: 6px; font-size: 0.85rem; margin-top: 10px; color: #166534; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="brand-title">🌊 OCEAN STUDY CLASSES</div>
+    <div class="brand-sub">SSC CGL 2025 Tier 1 Test 1 (12 Sep 2025 Shift-1)</div>
+  </div>
+  <div class="header-meta">
+    <div class="lang-selector">
+      <span>Language / भाषा:</span>
+      <select id="langChoice" onchange="changeLanguage(this.value)">
+        <option value="hi" selected>हिंदी (Hindi)</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+    <div style="font-size:0.85rem; color:#cbd5e1;">Candidate: <b>Mohit</b></div>
+    <div class="timer-box" id="timeRemaining">15:00</div>
+    <button class="btn btn-green" id="btnSubmitExam" style="display:none;" onclick="submitExam()">Submit Test</button>
+  </div>
+</header>
+
+<!-- SCREEN 1: OFFICIAL INSTRUCTIONS BEFORE TEST -->
+<div id="instructionsScreen">
+  <div class="inst-header-box">
+    <div class="inst-title" id="instTitleDisplay">SSC CGL 2025 - Test 1 (12 Sep 2025 Shift-1)</div>
+    <div class="inst-meta">
+      <span id="instDuration">Duration: 60 Mins (15 Mins / Section)</span>
+      <span id="instMarks">Maximum Marks: 200</span>
+    </div>
+  </div>
+
+  <div class="inst-body" id="instructionsContent">
+    <!-- Populated via JS based on Language -->
+  </div>
+
+  <div class="inst-declaration">
+    <input type="checkbox" id="chkAgreement" onchange="toggleStartBtn()">
+    <label for="chkAgreement" id="lblDeclaration">
+      I have read and understood all the instructions given above. I ensure that I am not in possession of any unauthorized electronic gadgets. I agree that in case of not adhering to instructions, I shall be liable to be debarred.
+    </label>
+  </div>
+
+  <div style="text-align: right; margin-top: 10px;">
+    <button class="btn btn-primary" id="btnStartTest" disabled onclick="beginExam()">I am ready to begin / परीक्षा शुरू करें</button>
+  </div>
+</div>
+
+<!-- SCREEN 2: ACTIVE CBT TEST PORTAL -->
+<div class="section-nav" id="sectionNav">
+  <button class="sec-tab active" id="tab0" onclick="switchSection(0)">Part-A: Reasoning</button>
+  <button class="sec-tab" id="tab1" onclick="switchSection(1)">Part-B: Gen Awareness</button>
+  <button class="sec-tab" id="tab2" onclick="switchSection(2)">Part-C: Quantitative Aptitude</button>
+  <button class="sec-tab" id="tab3" onclick="switchSection(3)">Part-D: English</button>
+</div>
+
+<div class="main-wrapper" id="examWrapper">
+  <div class="exam-area">
+    <div class="q-header">
+      <div class="q-title" id="qNumberDisplay">Question No. 1</div>
+      <div class="marking-tag" id="markingTag">Marks: Correct +2.0 | Negative -0.5</div>
+    </div>
+    <div class="q-text" id="qTextDisplay">Loading question...</div>
+    <div class="options-list" id="optionsContainer"></div>
+  </div>
+
+  <div class="side-panel">
+    <div class="legend-box">
+      <div class="legend-item"><div class="badge-dot bg-ans">✔</div> <span id="legAns">Answered</span></div>
+      <div class="legend-item"><div class="badge-dot bg-not-ans">✖</div> <span id="legNotAns">Not Answered</span></div>
+      <div class="legend-item"><div class="badge-dot bg-not-vis"></div> <span id="legNotVis">Not Visited</span></div>
+      <div class="legend-item"><div class="badge-dot bg-review">?</div> <span id="legRev">Marked Review</span></div>
+    </div>
+    <div style="padding:10px 14px 4px; font-weight:700; font-size:0.82rem; color:#475569;" id="secBadgeName">Part-A: Reasoning</div>
+    <div class="palette-grid-wrap">
+      <div class="palette-grid" id="paletteGrid"></div>
+    </div>
+  </div>
+</div>
+
+<div class="action-footer" id="examFooter">
+  <div style="display:flex; gap:10px;">
+    <button class="btn btn-purple" id="btnReviewNext" onclick="markForReviewAndNext()">Mark for Review & Next</button>
+    <button class="btn btn-outline" id="btnClearResp" onclick="clearResponse()">Clear Response</button>
+  </div>
+  <div style="display:flex; gap:10px;">
+    <button class="btn btn-outline" id="btnPrevQ" onclick="prevQuestion()">Previous</button>
+    <button class="btn btn-primary" id="btnSaveNext" onclick="saveAndNext()">Save & Next</button>
+  </div>
+</div>
+
+<!-- Modal Result & Solution Panel -->
+<div class="modal" id="resultModal">
+  <div class="modal-content">
+    <div class="modal-title" id="resModalTitle">🎉 Test Result Summary - Ocean Study Classes</div>
+    <div class="stat-cards">
+      <div class="stat-card"><h4 id="statLblScore">TOTAL SCORE</h4><p id="resScore">0 / 200</p></div>
+      <div class="stat-card"><h4 id="statLblAcc">ACCURACY</h4><p id="resAccuracy">0%</p></div>
+      <div class="stat-card"><h4 id="statLblAtt">ATTEMPTED</h4><p id="resAttempted">0 / 100</p></div>
+      <div class="stat-card"><h4 id="statLblCW">CORRECT / WRONG</h4><p id="resCorrectWrong">0 / 0</p></div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th id="thSec">Section</th>
+          <th id="thTot">Total</th>
+          <th id="thAtt">Attempted</th>
+          <th id="thCor">Correct</th>
+          <th id="thWrn">Incorrect</th>
+          <th id="thMrk">Marks</th>
+        </tr>
+      </thead>
+      <tbody id="secBreakdownTbody"></tbody>
+    </table>
+
+    <div style="display: flex; gap: 10px; justify-content: flex-end; margin-bottom: 15px;">
+      <button class="btn btn-purple" id="btnToggleSol" onclick="toggleSolutions()">📖 View / Hide Solutions</button>
+      <button class="btn btn-outline" id="btnPrintCard" onclick="window.print()">🖨 Print Scorecard</button>
+      <button class="btn btn-primary" id="btnReattempt" onclick="location.reload()">🔄 Re-attempt</button>
+    </div>
+
+    <div class="sol-container" id="solContainer">
+      <h3 style="margin-bottom: 12px; color:#0f172a;" id="solHeading">📝 Detailed Step-by-Step Solutions</h3>
+      <div class="sol-filter-bar">
+        <button class="btn btn-outline" onclick="filterSolutions('all')">All (100)</button>
+        <button class="btn btn-outline" style="color:var(--green);" onclick="filterSolutions('correct')">Correct</button>
+        <button class="btn btn-outline" style="color:var(--red);" onclick="filterSolutions('incorrect')">Incorrect</button>
+        <button class="btn btn-outline" style="color:var(--gray);" onclick="filterSolutions('skipped')">Unattempted</button>
+      </div>
+      <div id="solutionsList"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentLang = 'hi';
+
+const uiStrings = {
+  en: {
+    qNum: "Question No.",
+    marking: "Marks: Correct +2.0 | Negative -0.5",
+    ans: "Answered",
+    notAns: "Not Answered",
+    notVis: "Not Visited",
+    rev: "Marked for Review",
+    btnRevNext: "Mark for Review & Next",
+    btnClear: "Clear Response",
+    btnPrev: "Previous",
+    btnSaveNext: "Save & Next",
+    btnSubmit: "Submit Test",
+    solBtn: "📖 View / Hide Solutions",
+    printBtn: "🖨 Print Scorecard",
+    reattemptBtn: "🔄 Re-attempt",
+    yourAns: "Your Answer:",
+    corrAns: "Correct Answer:",
+    solExpl: "💡 Detailed Explanation:",
+    none: "None",
+    declaration: "I have read and understood all the instructions given above. I ensure that I am not in possession of any unauthorized electronic gadgets. I agree that in case of not adhering to instructions, I shall be liable to be debarred.",
+    instHtml: `
+      <h3>General Instructions:</h3>
+      <ol style="margin-left: 20px; margin-bottom: 15px;">
+        <li>The clock will be set at the server. The countdown timer at the top right corner of the screen will display the remaining time available for you to complete each section (15 Mins / section). When the timer reaches zero, the examination section will submit automatically.</li>
+        <li>The Question Palette displayed on the right side of the screen will show the status of each question using one of the following symbols:</li>
+      </ol>
+      <table class="inst-palette-table">
+        <tr><td><div class="badge-dot bg-not-vis"></div></td><td>You have not visited the question yet.</td></tr>
+        <tr><td><div class="badge-dot bg-not-ans">✖</div></td><td>You have not answered the question.</td></tr>
+        <tr><td><div class="badge-dot bg-ans">✔</div></td><td>You have answered the question.</td></tr>
+        <tr><td><div class="badge-dot bg-review">?</div></td><td>You have NOT answered the question, but have marked the question for review.</td></tr>
+        <tr><td><div class="badge-dot bg-ans-review">?</div></td><td>You have answered the question, but marked it for review (<b>considered for evaluation</b>).</td></tr>
+      </table>
+      <h3>Navigating & Answering Questions:</h3>
+      <ol start="3" style="margin-left: 20px;">
+        <li>Click on <b>Save & Next</b> to save your answer for the current question and go to the next.</li>
+        <li>Click on <b>Mark for Review & Next</b> to save your answer (if selected) and mark it for review.</li>
+        <li>To deselect your chosen answer, click on the <b>Clear Response</b> button.</li>
+        <li>Each question has 4 options with only one correct option. Correct answers carry <b>+2 marks</b>, wrong answers deduce <b>-0.5 marks</b>.</li>
+      </ol>
+    `
+  },
+  hi: {
+    qNum: "प्रश्न संख्या",
+    marking: "अंक: सही उत्तर +2.0 | नकारात्मक -0.5",
+    ans: "उत्तर दिया",
+    notAns: "उत्तर नहीं दिया",
+    notVis: "देखा नहीं गया",
+    rev: "समीक्षा के लिए चिह्नित",
+    btnRevNext: "समीक्षा के लिए चिह्नित करें और आगे बढ़ें",
+    btnClear: "प्रतिक्रिया साफ़ करें",
+    btnPrev: "पिछला",
+    btnSaveNext: "सहेजें और अगला",
+    btnSubmit: "टेस्ट सबमिट करें",
+    solBtn: "📖 हल देखें / छिपाएं",
+    printBtn: "🖨 स्कोरकार्ड प्रिंट करें",
+    reattemptBtn: "🔄 दोबारा प्रयास करें",
+    yourAns: "आपका उत्तर:",
+    corrAns: "सही उत्तर:",
+    solExpl: "💡 विस्तृत व्याख्या / हल:",
+    none: "कोई नहीं",
+    declaration: "मैंने ऊपर दिए गए सभी निर्देशों को ध्यानपूर्वक पढ़ और समझ लिया है। मैं प्रमाणित करता हूँ कि मेरे पास कोई अनधिकृत उपकरण नहीं है। मैं सहमत हूँ कि निर्देशों का पालन न करने पर मुझे परीक्षा से अयोग्य घोषित किया जा सकता है।",
+    instHtml: `
+      <h3>सामान्य निर्देश (General Instructions):</h3>
+      <ol style="margin-left: 20px; margin-bottom: 15px;">
+        <li>सर्वर पर घड़ी सेट की गई है। स्क्रीन के ऊपरी दाएं कोने में काउंटडाउन टाइमर प्रत्येक सेक्शन के लिए शेष समय (15 मिनट/सेक्शन) प्रदर्शित करेगा। समय समाप्त होने पर सेक्शन स्वतः सबमिट हो जाएगा।</li>
+        <li>स्क्रीन के दाईं ओर प्रश्न पैलेट प्रत्येक प्रश्न की स्थिति निम्नलिखित प्रतीकों के माध्यम से दिखाएगा:</li>
+      </ol>
+      <table class="inst-palette-table">
+        <tr><td><div class="badge-dot bg-not-vis"></div></td><td>आपने अभी तक प्रश्न नहीं देखा है।</td></tr>
+        <tr><td><div class="badge-dot bg-not-ans">✖</div></td><td>आपने प्रश्न का उत्तर नहीं दिया है।</td></tr>
+        <tr><td><div class="badge-dot bg-ans">✔</div></td><td>आप प्रश्न का उत्तर दे चुके हैं।</td></tr>
+        <tr><td><div class="badge-dot bg-review">?</div></td><td>आपने उत्तर नहीं दिया है, पर समीक्षा के लिए चिह्नित किया है।</td></tr>
+        <tr><td><div class="badge-dot bg-ans-review">?</div></td><td>आपने उत्तर दिया है और समीक्षा के लिए भी चिह्नित किया है (<b>मूल्यांकन के लिए माना जाएगा</b>)।</td></tr>
+      </table>
+      <h3>प्रश्नों को हल करना और नेविगेशन:</h3>
+      <ol start="3" style="margin-left: 20px;">
+        <li>उत्तर सुरक्षित करने के लिए <b>Save & Next (सहेजें और अगला)</b> पर क्लिक करें।</li>
+        <li>उत्तर को समीक्षा के लिए रखने हेतु <b>Mark for Review & Next</b> पर क्लिक करें।</li>
+        <li>चुने गए उत्तर को हटाने के लिए <b>Clear Response (प्रतिक्रिया साफ़ करें)</b> पर क्लिक करें।</li>
+        <li>प्रत्येक सही उत्तर के लिए <b>+2 अंक</b> दिए जाएंगे तथा प्रत्येक गलत उत्तर के लिए <b>-0.5 अंक</b> काटे जाएंगे।</li>
+      </ol>
+    `
+  }
+};
+
+const examData = [
+  // SECTION 1: REASONING (Q1-25)
+  {
+    id: 1, sec: 0,
+    text_en: "Watt: Power :: Pascal: ?",
+    text_hi: "वाट : शक्ति :: पास्कल : ?",
+    options_en: ["Energy", "Temperature", "Pressure", "Force"],
+    options_hi: ["ऊर्जा", "तापमान", "दबाव", "बल"],
+    ans: 2,
+    sol_en: "Watt is SI unit of Power; Pascal (Pa) is SI unit of Pressure.",
+    sol_hi: "वाट शक्ति (Power) का मात्रक है, पास्कल दबाव (Pressure) का मात्रक है।"
+  },
+  {
+    id: 2, sec: 0,
+    text_en: "Mekong: Tibet :: Amazon: ?",
+    text_hi: "मेकांग : तिब्बत :: अमेज़न : ?",
+    options_en: ["Chile", "Peru", "Colombia", "Ecuador"],
+    options_hi: ["चिली", "पेरू", "कोलंबिया", "इक्वेडोर"],
+    ans: 1,
+    sol_en: "Mekong originates in Tibet; Amazon originates in Peru.",
+    sol_hi: "मेकांग तिब्बत से और अमेज़न पेरू के एंडीज पर्वत से निकलती है।"
+  },
+  {
+    id: 3, sec: 0,
+    text_en: "CGK, GKO, KOS, OSW, ?",
+    text_hi: "CGK, GKO, KOS, OSW, ?",
+    options_en: ["SDA", "KNB", "SWA", "KJH"],
+    options_hi: ["SDA", "KNB", "SWA", "KJH"],
+    ans: 2,
+    sol_en: "Pattern +4 each: O(+4)=S, S(+4)=W, W(+4)=A => SWA.",
+    sol_hi: "सभी अक्षरों में +4 का अंतर है: SWA।"
+  },
+  {
+    id: 4, sec: 0,
+    text_en: "MIN, NJM, OKL, PLK, ?",
+    text_hi: "MIN, NJM, OKL, PLK, ?",
+    options_en: ["QWS", "HGF", "QMJ", "UJH"],
+    options_hi: ["QWS", "HGF", "QMJ", "UJH"],
+    ans: 2,
+    sol_en: "1st (+1): P->Q; 2nd (+1): L->M; 3rd (-1): K->J => QMJ.",
+    sol_hi: "क्रमशः +1, +1, -1 जोड़ने पर उत्तर QMJ प्राप्त होता है।"
+  },
+  {
+    id: 5, sec: 0,
+    text_en: "BRF, EUH, HXJ, KAL, ?",
+    text_hi: "BRF, EUH, HXJ, KAL, ?",
+    options_en: ["NMB", "NKH", "NHG", "NDN"],
+    options_hi: ["NMB", "NKH", "NHG", "NDN"],
+    ans: 3,
+    sol_en: "B(+3)=E, R(+3)=U, F(+2)=H => NDN.",
+    sol_hi: "अक्षरों के अंतर (+3, +3, +2) के अनुसार उत्तर NDN है।"
+  },
+  {
+    id: 6, sec: 0,
+    text_en: "WZWT, WWOH, WRGV, WNYJ, ?",
+    text_hi: "WZWT, WWOH, WRGV, WNYJ, ?",
+    options_en: ["WJQX", "WJQW", "WHPX", "WJPX"],
+    options_hi: ["WJQX", "WJQW", "WHPX", "WJPX"],
+    ans: 3,
+    sol_en: "Common 'W' followed by position decrement gives WJPX.",
+    sol_hi: "सही क्रम WJPX बनता है।"
+  },
+  {
+    id: 7, sec: 0,
+    text_en: "MCFI, NEKP, OGPW, PIUD, ?",
+    text_hi: "MCFI, NEKP, OGPW, PIUD, ?",
+    options_en: ["NKYD", "QLYL", "QKZK", "QKZL"],
+    options_hi: ["NKYD", "QLYL", "QKZK", "QKZL"],
+    ans: 3,
+    sol_en: "Shifts of +1, +2, +5, +7 lead to QKZL.",
+    sol_hi: "+1, +2, +5, +7 के अंतर पर सही अक्षर QKZL है।"
+  },
+  {
+    id: 8, sec: 0,
+    text_en: "3, 12, 7, 16, 11, 20, 15, ?",
+    text_hi: "3, 12, 7, 16, 11, 20, 15, ?",
+    options_en: ["16", "24", "14", "18"],
+    options_hi: ["16", "24", "14", "18"],
+    ans: 1,
+    sol_en: "Alternate series: 12, 16, 20, 24.",
+    sol_hi: "एकांतर श्रृंखला: 12 + 4 = 16, 16 + 4 = 20, 20 + 4 = 24।"
+  },
+  {
+    id: 9, sec: 0,
+    text_en: "Letters in STUDENT sorted alphabetically. Count between 2nd from left and 4th from right.",
+    text_hi: "STUDENT को वर्णानुक्रम में रखने पर बाएँ से दूसरे व दाएँ से चौथे के बीच अक्षर:",
+    options_en: ["17", "13", "11", "15"],
+    options_hi: ["17", "13", "11", "15"],
+    ans: 2,
+    sol_en: "Between E (5) and S (19) there are 11 letters as per examination key.",
+    sol_hi: "E और S के बीच सही अंतर 11 अक्षर है।"
+  },
+  {
+    id: 10, sec: 0,
+    text_en: "Which addresses are identical: 1. Surat, 395001 (Towers) 2. Emerald Tower 3. Arjun M. 4. Emerald Tower",
+    text_hi: "कौन से पते पूरी तरह समान हैं: 2 और 4",
+    options_en: ["1 and 2", "1 and 3", "2 and 4", "3 and 4"],
+    options_hi: ["1 और 2", "1 और 3", "2 और 4", "3 और 4"],
+    ans: 2,
+    sol_en: "Address 2 and 4 match perfectly without variation.",
+    sol_hi: "पता 2 और 4 शब्दशः समान हैं।"
+  },
+  {
+    id: 11, sec: 0,
+    text_en: "Identical to: Meenal Gupta 102, Silver Oaks, Sector 12, Noida, 201301",
+    text_hi: "मीनल गुप्ता 102, सिल्वर ओक्स, सेक्टर 12, नोएडा, 201301 के समान पता:",
+    options_en: ["1", "3", "2", "4"],
+    options_hi: ["1", "3", "2", "4"],
+    ans: 0,
+    sol_en: "Option 1 has exact matching characters.",
+    sol_hi: "विकल्प 1 बिल्कुल सही है।"
+  },
+  {
+    id: 12, sec: 0,
+    text_en: "AG: 10 :: CM: ?",
+    text_hi: "AG: 10 :: CM: ?",
+    options_en: ["KO", "KU", "KS", "KW"],
+    options_hi: ["KO", "KU", "KS", "KW"],
+    ans: 0,
+    sol_en: "Analogy pair corresponds to KO.",
+    sol_hi: "सादृश्य के आधार पर सही युग्म KO है।"
+  },
+  {
+    id: 13, sec: 0,
+    text_en: "A is facing North. B is seated second to right of A. Sitting immediately left of B?",
+    text_hi: "A उत्तर की ओर है। B, A के दाईं ओर दूसरे स्थान पर है। B के ठीक बाईं ओर कौन है?",
+    options_en: ["The person seated to immediate right of A", "The person opposite to A", "Immediate left of A", "Cannot be determined"],
+    options_hi: ["A के ठीक दाईं ओर बैठा व्यक्ति", "A के विपरीत व्यक्ति", "A के बाईं ओर", "तय नहीं"],
+    ans: 0,
+    sol_en: "The person in between is immediate right of A and immediate left of B.",
+    sol_hi: "A के ठीक दाईं ओर बैठा व्यक्ति ही B के बाईं ओर है।"
+  },
+  {
+    id: 14, sec: 0,
+    text_en: "TIME: VJOG :: WORD: ?",
+    text_hi: "TIME: VJOG :: WORD: ?",
+    options_en: ["YPTF", "YQTG", "YPSF", "ZPSF"],
+    options_hi: ["YPTF", "YQTG", "YPSF", "ZPSF"],
+    ans: 1,
+    sol_en: "W(+2)Y, O(+2)Q, R(+2)T, D(+3)G => YQTG.",
+    sol_hi: "पैटर्न अनुसार YQTG प्राप्त होता है।"
+  },
+  {
+    id: 15, sec: 0,
+    text_en: "GNIDAER: READING :: NOITULOS: ?",
+    text_hi: "GNIDAER: READING :: NOITULOS: ?",
+    options_en: ["SOLUTION", "SOLUNOIT", "NOILOSUT", "POLLUTION"],
+    options_hi: ["SOLUTION", "SOLUNOIT", "NOILOSUT", "POLLUTION"],
+    ans: 0,
+    sol_en: "Reverse order gives SOLUTION.",
+    sol_hi: "उल्टा लिखने पर SOLUTION बनता है।"
+  },
+  {
+    id: 16, sec: 0,
+    text_en: "AYRRJC: CATTLE :: NCPDCAR: ?",
+    text_hi: "AYRRJC: CATTLE :: NCPDCAR: ?",
+    options_en: ["SUBJECTS", "NEGLECT", "PERFECT", "OPERATE"],
+    options_hi: ["SUBJECTS", "NEGLECT", "PERFECT", "OPERATE"],
+    ans: 2,
+    sol_en: "Decoded word is PERFECT.",
+    sol_hi: "सही शब्द PERFECT है।"
+  },
+  {
+    id: 17, sec: 0,
+    text_en: "Odd one out: 2, 3, 5, 7, 11, 13, 17, 20",
+    text_hi: "विषम संख्या चुनें: 2, 3, 5, 7, 11, 13, 17, 20",
+    options_en: ["17", "13", "20", "11"],
+    options_hi: ["17", "13", "20", "11"],
+    ans: 2,
+    sol_en: "20 is non-prime composite number.",
+    sol_hi: "20 भाज्य संख्या है, शेष सभी अभाज्य हैं।"
+  },
+  {
+    id: 18, sec: 0,
+    text_en: "Which is the odd one out?",
+    text_hi: "विषम विकल्प चुनें:",
+    options_en: ["2, 3, 5", "11, 13, 17", "4, 6, 8", "7, 19, 23"],
+    options_hi: ["2, 3, 5", "11, 13, 17", "4, 6, 8", "7, 19, 23"],
+    ans: 2,
+    sol_en: "4, 6, 8 are composite numbers.",
+    sol_hi: "4, 6, 8 भाज्य संख्याएं हैं।"
+  },
+  {
+    id: 19, sec: 0,
+    text_en: "Rani said, 'The man in photo is my mother\\'s son-in-law.' Who is he to Rani?",
+    text_hi: "रानी ने कहा, 'फोटो वाला आदमी मेरी माँ का दामाद है।' वह रानी का कौन है?",
+    options_en: ["Husband", "Father", "Uncle", "Cousin"],
+    options_hi: ["पति", "पिता", "चाचा", "चचेरा भाई"],
+    ans: 0,
+    sol_en: "Mother's son-in-law is her husband.",
+    sol_hi: "माँ का दामाद रानी का पति है।"
+  },
+  {
+    id: 20, sec: 0,
+    text_en: "Group not following same pattern: K11:19:G7, M13:K11:19, O15:M13:K11, N14:K11:H8",
+    text_hi: "असमान पैटर्न वाला समूह चुनें:",
+    options_en: ["K11: 19: G7", "M13: K11: 19", "O15: M13: K11", "N14: K11: H8"],
+    options_hi: ["K11: 19: G7", "M13: K11: 19", "O15: M13: K11", "N14: K11: H8"],
+    ans: 3,
+    sol_en: "Steps by -3 rather than -2.",
+    sol_hi: "N14: K11: H8 में -3 का अंतर है।"
+  },
+  {
+    id: 21, sec: 0,
+    text_en: "Group not following same pattern: J10_: K11@: L12@",
+    text_hi: "असमान स्वरूप वाला समूह चुनें:",
+    options_en: ["A1: B2#: C3$", "D4%: E5: F6&", "G7*: H8(: I9)", "J10_: K11@: L12@"],
+    options_hi: ["A1: B2#: C3$", "D4%: E5: F6&", "G7*: H8(: I9)", "J10_: K11@: L12@"],
+    ans: 3,
+    sol_en: "Symbol repeated.",
+    sol_hi: "@ का दोहराव है।"
+  },
+  {
+    id: 22, sec: 0,
+    text_en: "'His mother is the only daughter of my father.' Relation to woman?",
+    text_hi: "'उसकी माँ मेरे पिता की इकलौती बेटी है।' आदमी महिला का क्या है?",
+    options_en: ["Son", "Nephew", "Cousin", "Grandson"],
+    options_hi: ["बेटा", "भतीजा", "चचेरा", "पोता"],
+    ans: 0,
+    sol_en: "She is talking about herself as mother => Son.",
+    sol_hi: "महिला स्वयं उसकी माँ है, अतः वह उसका बेटा है।"
+  },
+  {
+    id: 23, sec: 0,
+    text_en: "'She is wife of my uncle\\'s only son.' Relation to John?",
+    text_hi: "'वह मेरे चाचा के इकलौते बेटे की पत्नी है।' जॉन से रिश्ता?",
+    options_en: ["Sister", "Cousin", "Sister-in-law", "Niece"],
+    options_hi: ["बहन", "चचेरी बहन", "भाभी", "भतीजी"],
+    ans: 2,
+    sol_en: "Wife of cousin brother is Sister-in-law.",
+    sol_hi: "चचेरे भाई की पत्नी भाभी (Sister-in-law) हुई।"
+  },
+  {
+    id: 24, sec: 0,
+    text_en: "'My mother\\'s husband\\'s only son is father of your brother.' Relation?",
+    text_hi: "'मेरी माँ के पति का इकलौता बेटा तुम्हारे भाई का पिता है।' संबंध?",
+    options_en: ["Uncle", "Father", "Grandfather", "Brother"],
+    options_hi: ["चाचा", "पिता", "दादाजी", "भाई"],
+    ans: 1,
+    sol_en: "The man is Father.",
+    sol_hi: "वह व्यक्ति पिता है।"
+  },
+  {
+    id: 25, sec: 0,
+    text_en: "Evaluate: 9 # 2 @ 3 $ 1 where #=×, @=-, $=+",
+    text_hi: "मूल्यांकन करें: 9 # 2 @ 3 $ 1",
+    options_en: ["18", "14", "16", "17"],
+    options_hi: ["18", "14", "16", "17"],
+    ans: 2,
+    sol_en: "9 × 2 - 3 + 1 = 16.",
+    sol_hi: "9 × 2 - 3 + 1 = 16।"
+  },
+
+  // SECTION 2: GENERAL AWARENESS (Q26-50)
+  {
+    id: 26, sec: 1,
+    text_en: "Distinguishing feature of Elephanta Caves:",
+    text_hi: "एलीफेंटा गुफाओं की मुख्य विशिष्टता क्या है?",
+    options_en: ["Buddhist caves with stupas", "Focus on Shaivite themes with deep sculptural shadows", "Jain/Vaishnavite pillars", "Mauryan monolithic"],
+    options_hi: ["बौद्ध स्तूप", "शैव विषयवस्तु और छाया-प्रकाश मूर्तिकला", "जैन/वैष्णव खंभे", "मौर्य संरचनाएं"],
+    ans: 1,
+    sol_en: "Famous for Shaivite sculptures like Trimurti.",
+    sol_hi: "त्रिमूर्ति और शैव मूर्तिकला के लिए प्रसिद्ध हैं।"
+  },
+  {
+    id: 27, sec: 1,
+    text_en: "Goncha Festival statements: 1. Tupki uses Goncha fruit 2. Chalukya chariot procession 3. Ashadh Shukla Dashmi",
+    text_hi: "बस्तर गोंचा उत्सव: 1 व 2 सही",
+    options_en: ["Only 1 and 2", "Only 2 and 3", "Only 1 and 3", "1, 2 and 3 are correct"],
+    options_hi: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "सभी सही"],
+    ans: 0,
+    sol_en: "Statements 1 and 2 are true.",
+    sol_hi: "कथन 1 और 2 सत्य हैं।"
+  },
+  {
+    id: 28, sec: 1,
+    text_en: "In Carnatic music, laghu with 5 beats:",
+    text_hi: "कर्नाटक संगीत में 5 मात्राओं वाला ताल:",
+    options_en: ["Tishra", "Chaturashra", "Khanda", "Mishra"],
+    options_hi: ["तिशरा", "चतुराश्र", "खंडा", "मिश्रा"],
+    ans: 2,
+    sol_en: "Khanda = 5 beats.",
+    sol_hi: "खंडा = 5 मात्राएं।"
+  },
+  {
+    id: 29, sec: 1,
+    text_en: "Which statement about Judo is correct?",
+    text_hi: "जूडो के बारे में सही कथन:",
+    options_en: ["Introduced in 1882 by Jigoro Kano in Japan", "First Indian National in 1970", "Kalpana Devi 2010 gold", "Olympic in 1965"],
+    options_hi: ["1882 में जिगोरो कानो द्वारा शुरू", "1970 में राष्ट्रीय चैंपियनशिप", "कल्पना देवी 2010 स्वर्ण", "1965 में ओलंपिक"],
+    ans: 0,
+    sol_en: "Founded in 1882 by Kano Jigoro.",
+    sol_hi: "1882 में जिगोरो कानो ने स्थापना की।"
+  },
+  {
+    id: 30, sec: 1,
+    text_en: "59th National Cross Country Championships 2025 venue:",
+    text_hi: "59वीं राष्ट्रीय क्रॉस कंट्री चैंपियनशिप 2025:",
+    options_en: ["10 Jan Lucknow", "12 Jan Meerut", "15 Jan Kanpur", "12 Jan Jaipur"],
+    options_hi: ["10 जनवरी लखनऊ", "12 जनवरी मेरठ", "15 जनवरी कानपुर", "12 जनवरी जयपुर"],
+    ans: 1,
+    sol_en: "Held 12 Jan 2025 at Meerut, UP.",
+    sol_hi: "12 जनवरी 2025 को मेरठ, उत्तर प्रदेश में आयोजित।"
+  },
+  {
+    id: 31, sec: 1,
+    text_en: "Core focus of 2024 India-UAE Bilateral Investment Treaty:",
+    text_hi: "2024 भारत-यूएई द्विपक्षीय निवेश संधि का फोकस:",
+    options_en: ["Joint sovereign funds", "Pre-establishment rights", "Post-establishment investor confidence via standard and national treatment", "GCC tax regulation"],
+    options_hi: ["संयुक्त संप्रभु निधि", "पूर्व स्थापना अधिकार", "स्थापना के बाद निवेशकों का विश्वास (राष्ट्रीय उपचार)", "जीसीसी कर ढांचा"],
+    ans: 2,
+    sol_en: "Protects post-establishment investment with national treatment.",
+    sol_hi: "स्थापना के बाद गैर-भेदभावपूर्ण राष्ट्रीय व्यवहार सुनिश्चित करना।"
+  },
+  {
+    id: 32, sec: 1,
+    text_en: "Santosh Trophy 2022-23 final held in:",
+    text_hi: "संतोष ट्रॉफी 2022-23 फाइनल कहाँ आयोजित हुआ?",
+    options_en: ["Dubai", "Riyadh", "Doha", "Muscat"],
+    options_hi: ["दुबई", "रियाद", "दोहा", "मस्कट"],
+    ans: 1,
+    sol_en: "Riyadh, Saudi Arabia.",
+    sol_hi: "रियाद (सऊदी अरब)।"
+  },
+  {
+    id: 33, sec: 1,
+    text_en: "'Landscapes of Loss: The Story of an Indian Drought' theme:",
+    text_hi: "'लैंडस्केप्स ऑफ लॉस' का मुख्य विषय:",
+    options_en: ["Study on drought's human and ecological impacts in India", "Fictional family story", "History of ancient agriculture", "Colonial water policies"],
+    options_hi: ["भारत में सूखे के मानवीय व पारिस्थितिक प्रभाव", "काल्पनिक कहानी", "प्राचीन कृषि इतिहास", "औपनिवेशिक नीतियां"],
+    ans: 0,
+    sol_en: "Non-fiction study on drought impacts in India.",
+    sol_hi: "सूखे के मानवीय और पर्यावरणीय संकट पर शोध।"
+  },
+  {
+    id: 34, sec: 1,
+    text_en: "Glacial hanging valleys & truncated spurs:",
+    text_hi: "हिमनदीय लटकती घाटियाँ व स्पर:",
+    options_en: ["Only 1", "Only 2", "1 and 2 are correct", "Neither 1 nor 2"],
+    options_hi: ["केवल 1", "केवल 2", "1 और 2 दोनों सही", "कोई नहीं"],
+    ans: 2,
+    sol_en: "Both geomorphological facts are correct.",
+    sol_hi: "दोनों कथन सत्य हैं।"
+  },
+  {
+    id: 35, sec: 1,
+    text_en: "Crew Escape System (CES) on ISRO HLVM3 rocket:",
+    text_hi: "इसरो के HLVM3 पर क्रू एस्केप सिस्टम का कार्य:",
+    options_en: ["Orbit guidance", "Eject crew module to safety during launch emergencies", "Docking assistance", "Thermal shielding"],
+    options_hi: ["कक्षा मार्गदर्शन", "आपात स्थिति में क्रू मॉड्यूल को सुरक्षित निकालना", "डॉकिंग सहायता", "तापीय परिरक्षण"],
+    ans: 1,
+    sol_en: "Safely ejects crew in emergency abort.",
+    sol_hi: "आपातकालीन स्थिति में क्रू मॉड्यूल को सुरक्षित बाहर निकालना।"
+  },
+  {
+    id: 36, sec: 1,
+    text_en: "Justice Sanjiv Khanna facts:",
+    text_hi: "न्यायमूर्ति संजीव खन्ना से जुड़े कथन:",
+    options_en: ["1 and 2 only", "2 and 3 only", "1 and 3 only", "All are true"],
+    options_hi: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "सभी सही हैं"],
+    ans: 0,
+    sol_en: "51st CJI succeeding Justice Chandrachud.",
+    sol_hi: "51वें मुख्य न्यायाधीश बने और चंद्रचूड़ जी का स्थान लिया।"
+  },
+  {
+    id: 37, sec: 1,
+    text_en: "National Population Policy (NPP) 2000 objectives:",
+    text_hi: "राष्ट्रीय जनसंख्या नीति (NPP) 2000 के उद्देश्य:",
+    options_en: ["Only 1 and 2", "Only 1 and 3", "Only 1, 3 and 4", "All are correct"],
+    options_hi: ["केवल 1 और 2", "केवल 1 और 3", "केवल 1, 3 और 4", "सभी सही"],
+    ans: 2,
+    sol_en: "1, 3, 4 are true (aimed at reducing fertility, not increasing).",
+    sol_hi: "1, 3 और 4 सही हैं।"
+  },
+  {
+    id: 38, sec: 1,
+    text_en: "Cellular respiration pathway generating most ATP:",
+    text_hi: "सर्वाधिक ATP उत्पन्न करने वाला श्वसन मार्ग:",
+    options_en: ["Glycolysis", "Krebs cycle", "Electron transport chain", "Fermentation"],
+    options_hi: ["ग्लाइकोलाइसिस", "क्रेब्स चक्र", "इलेक्ट्रॉन परिवहन श्रृंखला", "किण्वन"],
+    ans: 2,
+    sol_en: "Electron Transport Chain produces maximum ATP.",
+    sol_hi: "इलेक्ट्रॉन परिवहन श्रृंखला (ETC)।"
+  },
+  {
+    id: 39, sec: 1,
+    text_en: "Chronological order of Acts and Councils:",
+    text_hi: "घटनाओं का सही कालानुक्रम:",
+    options_en: ["b-c-a", "c-b-a", "a-b-c", "b-a-c"],
+    options_hi: ["b-c-a", "c-b-a", "a-b-c", "b-a-c"],
+    ans: 0,
+    sol_en: "1956 Act -> 1957 meeting -> 2022 meeting.",
+    sol_hi: "b-c-a सही कालक्रम है।"
+  },
+  {
+    id: 40, sec: 1,
+    text_en: "Legal character of Right to Property under Article 300A:",
+    text_hi: "अनुच्छेद 300A के तहत संपत्ति का अधिकार:",
+    options_en: ["Fundamental right", "Deprivation without law allowed", "Constitutional legal right permitting deprivation only by authority of law", "Claim under Art 32"],
+    options_hi: ["मौलिक अधिकार", "बिना कानून छीना जा सकता है", "संवैधानिक कानूनी अधिकार (केवल विधि के प्राधिकार से)", "अनुच्छेद 32 के तहत"],
+    ans: 2,
+    sol_en: "Constitutional legal right.",
+    sol_hi: "संवैधानिक कानूनी अधिकार।"
+  },
+  {
+    id: 41, sec: 1,
+    text_en: "Angular velocity of rigid body particles:",
+    text_hi: "दृढ़ पिंड के कणों का कोणीय वेग:",
+    options_en: ["Proportional to distance", "Same for all particles", "Inversely proportional", "Zero"],
+    options_hi: ["दूरी के समानुपाती", "सभी कणों के लिए समान", "व्युत्क्रमानुपाती", "शून्य"],
+    ans: 1,
+    sol_en: "Same for all particles in rigid rotation.",
+    sol_hi: "सभी कणों के लिए समान रहता है।"
+  },
+  {
+    id: 42, sec: 1,
+    text_en: "Bharatiya Sakshya Adhiniyam technology focus:",
+    text_hi: "भारतीय साक्ष्य अधिनियम में प्रौद्योगिकी:",
+    options_en: ["Physical exhibits", "Diaries", "Digital and electronic evidence", "Oral confessions"],
+    options_hi: ["भौतिक साक्ष्य", "डायरी", "डिजिटल और इलेक्ट्रॉनिक साक्ष्य", "मौखिक स्वीकारोक्ति"],
+    ans: 2,
+    sol_en: "Focus on electronic and digital evidence.",
+    sol_hi: "डिजिटल और इलेक्ट्रॉनिक साक्ष्य।"
+  },
+  {
+    id: 43, sec: 1,
+    text_en: "One Nation One Ration Card uses biometric authentication:",
+    text_hi: "वन नेशन वन राशन कार्ड बायोमेट्रिक प्रमाणीकरण का उपयोग करता है:",
+    options_en: ["Both A and R true, R is correct explanation", "Both true, not correct explanation", "A true, R false", "A false, R true"],
+    options_hi: ["A और R दोनों सही, R सही व्याख्या है", "व्याख्या सही नहीं", "A सत्य, R असत्य", "A असत्य, R सत्य"],
+    ans: 0,
+    sol_en: "Both true and R explains A.",
+    sol_hi: "A और R दोनों सत्य हैं और R सही व्याख्या है।"
+  },
+  {
+    id: 44, sec: 1,
+    text_en: "Cheraw bamboo dance belongs to:",
+    text_hi: "चेराव बांस नृत्य किस राज्य का है?",
+    options_en: ["Mizoram", "Meghalaya", "Arunachal Pradesh", "Sikkim"],
+    options_hi: ["मिजोरम", "मेघालय", "अरुणाचल प्रदेश", "सिक्किम"],
+    ans: 0,
+    sol_en: "Mizoram.",
+    sol_hi: "मिजोरम।"
+  },
+  {
+    id: 45, sec: 1,
+    text_en: "Key factor assessed in Global Firepower Ranking:",
+    text_hi: "ग्लोबल फायरपावर रैंकिंग में मूल्यांकन कारक:",
+    options_en: ["Economic Stability", "Cultural Influence", "Defense Budget", "Healthcare Spending"],
+    options_hi: ["आर्थिक स्थिरता", "सांस्कृतिक प्रभाव", "रक्षा बजट", "स्वास्थ्य व्यय"],
+    ans: 2,
+    sol_en: "Defense Budget.",
+    sol_hi: "रक्षा बजट।"
+  },
+  {
+    id: 46, sec: 1,
+    text_en: "Cooperative sector industries are:",
+    text_hi: "सहकारी क्षेत्र के उद्योग:",
+    options_en: ["Central government owned", "Export solely", "Owned by workers or suppliers sharing profits and losses", "Foreign owned"],
+    options_hi: ["सरकार के स्वामित्व में", "केवल निर्यात", "श्रमिकों/उत्पादकों द्वारा स्वामित्व जो लाभ-हानि साझा करते हैं", "विदेशी कंपनी"],
+    ans: 2,
+    sol_en: "Owned by suppliers/workers.",
+    sol_hi: "श्रमिकों या उत्पादकों द्वारा संचालित।"
+  },
+  {
+    id: 47, sec: 1,
+    text_en: "Education is in which list after 42nd Amendment?",
+    text_hi: "42वें संशोधन के बाद शिक्षा किस सूची में है?",
+    options_en: ["Union List", "State List", "Concurrent List", "Judicial List"],
+    options_hi: ["संघ सूची", "राज्य सूची", "समवर्ती सूची", "न्यायिक सूची"],
+    ans: 2,
+    sol_en: "Concurrent List.",
+    sol_hi: "समवर्ती सूची।"
+  },
+  {
+    id: 48, sec: 1,
+    text_en: "Objective of National Framework for Climate Services:",
+    text_hi: "NFCS का मुख्य उद्देश्य:",
+    options_en: ["Emission targets", "Groundwater", "To deliver sector-specific climate information services", "Carbon offsetting"],
+    options_hi: ["उत्सर्जन लक्ष्य", "भूजल", "क्षेत्र-विशिष्ट जलवायु सूचना सेवाएं प्रदान करना", "कार्बन ऑफसेट"],
+    ans: 2,
+    sol_en: "Sector-specific climate services.",
+    sol_hi: "क्षेत्र-विशिष्ट जलवायु सूचना सेवाएं।"
+  },
+  {
+    id: 49, sec: 1,
+    text_en: "Argon produced in Earth's crust via:",
+    text_hi: "पृथ्वी की पपड़ी में आर्गन किसके क्षय से बनता है?",
+    options_en: ["Decay of K-40", "Volcanoes", "Photosynthesis", "Cosmic rays"],
+    options_hi: ["K-40 का क्षय", "ज्वालामुखी", "प्रकाश संश्लेषण", "ब्रह्मांडीय किरणें"],
+    ans: 0,
+    sol_en: "Decay of Potassium-40.",
+    sol_hi: "K-40 का रेडियोधर्मी क्षय।"
+  },
+  {
+    id: 50, sec: 1,
+    text_en: "Fundamental Rights vs DPSPs:",
+    text_hi: "मौलिक अधिकार बनाम DPSP:",
+    options_en: ["Both justiciable", "DPSPs override FR", "Fundamental Rights are justiciable, but DPSPs are not", "FR optional"],
+    options_hi: ["दोनों न्यायोचित", "DPSP प्राथमिकता", "मौलिक अधिकार न्यायोचित हैं, लेकिन DPSP नहीं", "FR वैकल्पिक"],
+    ans: 2,
+    sol_en: "FRs are justiciable; DPSPs are non-justiciable.",
+    sol_hi: "मौलिक अधिकार न्यायोचित हैं, लेकिन DPSP नहीं।"
+  },
+
+  // SECTION 3: QUANTITATIVE APTITUDE (Q51-75)
+  {
+    id: 51, sec: 2,
+    text_en: "Arrange fractions in ascending order: 5/9, 4/7, 3/5, 2/3",
+    text_hi: "भिन्नों को आरोही क्रम में रखें: 5/9, 4/7, 3/5, 2/3",
+    options_en: ["5/9 < 4/7 < 3/5 < 2/3", "4/7 < 5/9 < 3/5 < 2/3", "3/5 < 5/9 < 4/7 < 2/3", "2/3 < 3/5 < 4/7 < 5/9"],
+    options_hi: ["5/9 < 4/7 < 3/5 < 2/3", "4/7 < 5/9 < 3/5 < 2/3", "3/5 < 5/9 < 4/7 < 2/3", "2/3 < 3/5 < 4/7 < 5/9"],
+    ans: 0,
+    sol_en: "0.55 < 0.57 < 0.60 < 0.66 => 5/9 < 4/7 < 3/5 < 2/3.",
+    sol_hi: "दशमलव मान: 0.55 < 0.57 < 0.60 < 0.66।"
+  },
+  {
+    id: 52, sec: 2,
+    text_en: "Simplify: (2 1/2 + 3.6) - 1.9",
+    text_hi: "सरल करें: (2 1/2 + 3.6) - 1.9",
+    options_en: ["4.2", "5.2", "6.2", "7.2"],
+    options_hi: ["4.2", "5.2", "6.2", "7.2"],
+    ans: 0,
+    sol_en: "2.5 + 3.6 - 1.9 = 4.2.",
+    sol_hi: "6.1 - 1.9 = 4.2।"
+  },
+  {
+    id: 53, sec: 2,
+    text_en: "Evaluate: 7 1/4 - [ 5/6 ÷ { 1/3 - (1/2 × (3/4 - 1/4)) } ]",
+    text_hi: "मूल्यांकन करें: 7 1/4 - [ 5/6 ÷ { 1/3 - (1/2 × (3/4 - 1/4)) } ]",
+    options_en: ["3 1/4", "-3 1/4", "-2 3/4", "2 3/4"],
+    options_hi: ["3 1/4", "-3 1/4", "-2 3/4", "2 3/4"],
+    ans: 2,
+    sol_en: "7.25 - 10 = -2.75 = -2 3/4.",
+    sol_hi: "हल करने पर -2 3/4 प्राप्त होता है।"
+  },
+  {
+    id: 54, sec: 2,
+    text_en: "Ratio of Python to Java engineers (Python=120, Java=110):",
+    text_hi: "पायथन व जावा इंजीनियरों का अनुपात:",
+    options_en: ["11:12", "12:11", "7:6", "6:7"],
+    options_hi: ["11:12", "12:11", "7:6", "6:7"],
+    ans: 1,
+    sol_en: "120 : 110 = 12 : 11.",
+    sol_hi: "120 : 110 = 12:11।"
+  },
+  {
+    id: 55, sec: 2,
+    text_en: "Arvind 80k (12m), Bhavin 120k (8m), Chandan 160k (4m). Profit 1,05,000. Chandan's share?",
+    text_hi: "अरविंद, भाविन, चंदन का लाभ अनुपात 3:3:2। चंदन का भाग:",
+    options_en: ["₹26,500", "₹26,000", "₹26,200", "₹26,250"],
+    options_hi: ["₹26,500", "₹26,000", "₹26,200", "₹26,250"],
+    ans: 3,
+    sol_en: "(2/8) × 1,05,000 = ₹26,250.",
+    sol_hi: "(2/8) × 1,05,000 = ₹26,250।"
+  },
+  {
+    id: 56, sec: 2,
+    text_en: "A ₹80k for 9m, B ₹120k for 6m. Profit ₹45k. B's share?",
+    text_hi: "₹45,000 लाभ में B का हिस्सा:",
+    options_en: ["₹26,500", "₹28,000", "₹36,000", "₹22,500"],
+    options_hi: ["₹26,500", "₹28,000", "₹36,000", "₹22,500"],
+    ans: 3,
+    sol_en: "Equal 1:1 ratio => ₹22,500.",
+    sol_hi: "समान अनुपात होने से ₹22,500।"
+  },
+  {
+    id: 57, sec: 2,
+    text_en: "Average of integers between 100 and 250 divisible by 11:",
+    text_hi: "100 से 250 के बीच 11 से विभाज्य संख्याओं का औसत:",
+    options_en: ["176", "186", "196", "146"],
+    options_hi: ["176", "186", "196", "146"],
+    ans: 0,
+    sol_en: "(110 + 242) / 2 = 176.",
+    sol_hi: "(110 + 242) / 2 = 176।"
+  },
+  {
+    id: 58, sec: 2,
+    text_en: "Average of 13th and 14th numbers in 15-number set:",
+    text_hi: "13वीं और 14वीं संख्याओं का औसत:",
+    options_en: ["70.89", "85", "75.67", "80.65"],
+    options_hi: ["70.89", "85", "75.67", "80.65"],
+    ans: 1,
+    sol_en: "Average is 85.",
+    sol_hi: "औसत 85 है।"
+  },
+  {
+    id: 59, sec: 2,
+    text_en: "Flat ₹8,00,000. 9% return with ₹2,000/mo maintenance. Monthly rent?",
+    text_hi: "फ्लैट पर 9% रिटर्न और ₹2000 रख-रखाव। मासिक किराया?",
+    options_en: ["₹7,000", "₹7,500", "₹8,000", "₹8,500"],
+    options_hi: ["₹7,000", "₹7,500", "₹8,000", "₹8,500"],
+    ans: 2,
+    sol_en: "6000 + 2000 = ₹8,000.",
+    sol_hi: "₹6,000 + ₹2,000 = ₹8,000।"
+  },
+  {
+    id: 60, sec: 2,
+    text_en: "Doubles in 5 years. Years to become 8 times?",
+    text_hi: "5 वर्ष में 2 गुना। 8 गुना होने में वर्ष?",
+    options_en: ["15", "16", "17", "18"],
+    options_hi: ["15", "16", "17", "18"],
+    ans: 0,
+    sol_en: "5 × 3 = 15 years.",
+    sol_hi: "5 × 3 = 15 वर्ष।"
+  },
+  {
+    id: 61, sec: 2,
+    text_en: "Sum ₹6600 in 2 yrs, ₹7920 in 3 yrs. Principal?",
+    text_hi: "2 वर्ष में ₹6600 व 3 वर्ष में ₹7920। मूलधन:",
+    options_en: ["₹4,000.33", "₹5,583.33", "₹4,583.33", "₹6,583.33"],
+    options_hi: ["₹4,000.33", "₹5,583.33", "₹4,583.33", "₹6,583.33"],
+    ans: 2,
+    sol_en: "6600 / 1.44 = ₹4,583.33.",
+    sol_hi: "मूलधन = ₹4,583.33।"
+  },
+  {
+    id: 62, sec: 2,
+    text_en: "25L at ₹45 and 15L at ₹50. Sold at ₹48. Profit/loss?",
+    text_hi: "25L ₹45 में, 15L ₹50 में। ₹48 में बेचा। लाभ/हानि?",
+    options_en: ["Loss of ₹45", "Profit of ₹45", "Profit of ₹90", "Loss of ₹90"],
+    options_hi: ["₹45 नुकसान", "₹45 लाभ", "₹90 लाभ", "₹90 नुकसान"],
+    ans: 1,
+    sol_en: "1920 - 1875 = Profit of ₹45.",
+    sol_hi: "₹45 का लाभ।"
+  },
+  {
+    id: 63, sec: 2,
+    text_en: "1200 cars for ₹90k. Donated 200. Rest sold at ₹108 (buy 8 get 2 free). Loss %?",
+    text_hi: "खिलौनों पर कुल हानि प्रतिशत:",
+    options_en: ["4% loss", "4% profit", "5% loss", "5% profit"],
+    options_hi: ["4% हानि", "4% लाभ", "5% हानि", "5% लाभ"],
+    ans: 0,
+    sol_en: "4% loss.",
+    sol_hi: "4% हानि।"
+  },
+  {
+    id: 64, sec: 2,
+    text_en: "Marked 80% above CP. Discounts 25% and 10%. SP=15552. CP?",
+    text_hi: "लागत मूल्य ज्ञात करें:",
+    options_en: ["₹9,000", "₹9,200", "₹12,800", "₹10,000"],
+    options_hi: ["₹9,000", "₹9,200", "₹12,800", "₹10,000"],
+    ans: 2,
+    sol_en: "CP = ₹12,800.",
+    sol_hi: "CP = ₹12,800।"
+  },
+  {
+    id: 65, sec: 2,
+    text_en: "40L juice:water = 5:3. Water added to make 2:3?",
+    text_hi: "2:3 अनुपात बनाने के लिए मिलाया जाने वाला पानी:",
+    options_en: ["15.5 litres", "22.5 litres", "25 litres", "30 litres"],
+    options_hi: ["15.5 लीटर", "22.5 लीटर", "25 लीटर", "30 लीटर"],
+    ans: 1,
+    sol_en: "37.5 - 15 = 22.5 litres.",
+    sol_hi: "22.5 लीटर।"
+  },
+  {
+    id: 66, sec: 2,
+    text_en: "A in 15d, B in 20d. 4 days together. Fraction remaining?",
+    text_hi: "4 दिन बाद शेष बचा कार्य:",
+    options_en: ["1/4", "7/15", "8/15", "11/15"],
+    options_hi: ["1/4", "7/15", "8/15", "11/15"],
+    ans: 2,
+    sol_en: "1 - 7/15 = 8/15.",
+    sol_hi: "8/15 भाग।"
+  },
+  {
+    id: 67, sec: 2,
+    text_en: "Oils ₹90 and ₹150 blended, sold at ₹144 (20% profit). Ratio?",
+    text_hi: "दोनो तेलों का अनुपात:",
+    options_en: ["1:1", "2:1", "3:2", "4:1"],
+    options_hi: ["1:1", "2:1", "3:2", "4:1"],
+    ans: 0,
+    sol_en: "1:1 ratio.",
+    sol_hi: "1:1 अनुपात।"
+  },
+  {
+    id: 68, sec: 2,
+    text_en: "Pipes A(6), B(8), C(12). All 3 for 2h then C closed. Additional time?",
+    text_hi: "शेष टैंक भरने में लगा अतिरिक्त समय:",
+    options_en: ["6/7 hours", "2 hours", "9/2 hours", "3/5 hours"],
+    options_hi: ["6/7 घंटे", "2 घंटे", "9/2 घंटे", "3/5 घंटे"],
+    ans: 0,
+    sol_en: "6/7 hours.",
+    sol_hi: "6/7 घंटे।"
+  },
+  {
+    id: 69, sec: 2,
+    text_en: "30 min at 240 km/h. Distance +20%. Speed for same time?",
+    text_hi: "दूरी 20% बढ़ने पर नई गति:",
+    options_en: ["280 km/h", "300 km/h", "288 km/h", "320 km/h"],
+    options_hi: ["280 किमी/घंटा", "300 किमी/घंटा", "288 किमी/घंटा", "320 किमी/घंटा"],
+    ans: 2,
+    sol_en: "240 × 1.2 = 288 km/h.",
+    sol_hi: "288 किमी/घंटा।"
+  },
+  {
+    id: 70, sec: 2,
+    text_en: "Cars 360 km apart. Meet in 4h towards each other; 12h same direction. Speed X?",
+    text_hi: "तेज कार X की गति:",
+    options_en: ["60 km/h", "75 km/h", "45 km/h", "90 km/h"],
+    options_hi: ["60 किमी/घंटा", "75 किमी/घंटा", "45 किमी/घंटा", "90 किमी/घंटा"],
+    ans: 0,
+    sol_en: "(90 + 30)/2 = 60 km/h.",
+    sol_hi: "60 किमी/घंटा।"
+  },
+  {
+    id: 71, sec: 2,
+    text_en: "Pizza radius 21 cm. 75% eaten. Remaining area?",
+    text_hi: "बचे पिज़्ज़ा का क्षेत्रफल:",
+    options_en: ["173.25 cm²", "346.36 cm²", "432.25 cm²", "115.5 cm²"],
+    options_hi: ["173.25 सेमी²", "346.36 सेमी²", "432.25 सेमी²", "115.5 सेमी²"],
+    ans: 1,
+    sol_en: "346.36 cm².",
+    sol_hi: "346.36 सेमी²।"
+  },
+  {
+    id: 72, sec: 2,
+    text_en: "Ring radii 10 and 7 cm. Ratio of ring area to outer circle?",
+    text_hi: "वलय और बाहरी वृत्त के क्षेत्रफल का अनुपात:",
+    options_en: ["1:2", "2:3", "3:4", "4:5"],
+    options_hi: ["1:2", "2:3", "3:4", "4:5"],
+    ans: 0,
+    sol_en: "51 : 100 ≈ 1:2.",
+    sol_hi: "लगभग 1:2।"
+  },
+  {
+    id: 73, sec: 2,
+    text_en: "Circumference covered in quarter turn of wheel?",
+    text_hi: "एक-चौथाई चक्कर में तय परिधि प्रतिशत:",
+    options_en: ["15%", "25%", "30%", "35%"],
+    options_hi: ["15%", "25%", "30%", "35%"],
+    ans: 1,
+    sol_en: "Quarter turn is 25%.",
+    sol_hi: "25% भाग।"
+  },
+  {
+    id: 74, sec: 2,
+    text_en: "Line y = mx + 5 passes through (1, 8). m = ?",
+    text_hi: "m का मान क्या होगा:",
+    options_en: ["5", "4", "3", "2"],
+    options_hi: ["5", "4", "3", "2"],
+    ans: 2,
+    sol_en: "m = 8 - 5 = 3.",
+    sol_hi: "m = 3।"
+  },
+  {
+    id: 75, sec: 2,
+    text_en: "Evaluate: 31³ + 18³ - 37³ + 210",
+    text_hi: "31³ + 18³ - 37³ + 210 का मान:",
+    options_en: ["-36810", "-14820", "-45670", "-23450"],
+    options_hi: ["-36810", "-14820", "-45670", "-23450"],
+    ans: 1,
+    sol_en: "-14820.",
+    sol_hi: "-14820।"
+  },
+
+  // SECTION 4: ENGLISH COMPREHENSION (Q76-100)
+  {
+    id: 76, sec: 3,
+    text_en: "Synonym of PERFIDIOUS:",
+    text_hi: "PERFIDIOUS का पर्यायवाची शब्द:",
+    options_en: ["Honest", "Faithful", "Treacherous", "Loyal"],
+    options_hi: ["Honest", "Faithful", "Treacherous", "Loyal"],
+    ans: 2,
+    sol_en: "Treacherous.",
+    sol_hi: "Treacherous (विश्वासघाती)।"
+  },
+  {
+    id: 77, sec: 3,
+    text_en: "Meaning of 'Hobson\\'s choice':",
+    text_hi: "मुहावरे 'Hobson\\'s choice' का अर्थ:",
+    options_en: ["A dilemma between two evils", "A free and fair decision", "No real choice at all", "A selection made under duress"],
+    options_hi: ["दो बुराइयों में चुनाव", "स्वतंत्र निर्णय", "कोई वास्तविक विकल्प न होना", "दबाव में चुनाव"],
+    ans: 2,
+    sol_en: "No real choice at all.",
+    sol_hi: "वास्तव में कोई विकल्प न होना।"
+  },
+  {
+    id: 78, sec: 3,
+    text_en: "Antonym of Perfidious:",
+    text_hi: "Perfidious का विलोम शब्द:",
+    options_en: ["Betraying", "Faithless", "Loyal", "Treacherous"],
+    options_hi: ["Betraying", "Faithless", "Loyal", "Treacherous"],
+    ans: 2,
+    sol_en: "Loyal.",
+    sol_hi: "Loyal (निष्ठावान)।"
+  },
+  {
+    id: 79, sec: 3,
+    text_en: "Identify misspelt word:",
+    text_hi: "अशुद्ध वर्तनी वाला शब्द पहचानें:",
+    options_en: ["Vicereine", "Floccinaucinihilipilification", "Defenestrate", "Quintessance"],
+    options_hi: ["Vicereine", "Floccinaucinihilipilification", "Defenestrate", "Quintessance"],
+    ans: 3,
+    sol_en: "Correct: Quintessence.",
+    sol_hi: "सही स्पेलिंग: Quintessence।"
+  },
+  {
+    id: 80, sec: 3,
+    text_en: "Correct spelling of CSF-shunt:",
+    text_hi: "CSF-शंट प्रक्रिया की सही वर्तनी:",
+    options_en: ["Ventriculoperitoneal", "Ventriculoperitonal", "Ventriculaperitoneal", "Ventriculoperetoneal"],
+    options_hi: ["Ventriculoperitoneal", "Ventriculoperitonal", "Ventriculaperitoneal", "Ventriculoperetoneal"],
+    ans: 0,
+    sol_en: "Ventriculoperitoneal.",
+    sol_hi: "Ventriculoperitoneal।"
+  },
+  {
+    id: 81, sec: 3,
+    text_en: "One word: 'An official reprimand or strong criticism'",
+    text_hi: "वाक्यांश के लिए एक शब्द: 'An official reprimand or strong criticism'",
+    options_en: ["Accusation", "Denunciation", "Censure", "Indictment"],
+    options_hi: ["Accusation", "Denunciation", "Censure", "Indictment"],
+    ans: 2,
+    sol_en: "Censure.",
+    sol_hi: "Censure।"
+  },
+  {
+    id: 82, sec: 3,
+    text_en: "The startup scaled so rapidly that its infrastructure could ______ keep pace.",
+    text_hi: "रिक्त स्थान भरें: ...infrastructure could ______ keep pace.",
+    options_en: ["barely", "merely", "scarcely", "all but"],
+    options_hi: ["barely", "merely", "scarcely", "all but"],
+    ans: 0,
+    sol_en: "barely.",
+    sol_hi: "barely।"
+  },
+  {
+    id: 83, sec: 3,
+    text_en: "...it can occur ______ prolonged drought conditions.",
+    text_hi: "रिक्त स्थान भरें: ...occur ______ prolonged drought conditions.",
+    options_en: ["towards", "amid", "among", "under"],
+    options_hi: ["towards", "amid", "among", "under"],
+    ans: 3,
+    sol_en: "under.",
+    sol_hi: "under।"
+  },
+  {
+    id: 84, sec: 3,
+    text_en: "...its implementation proved ______ complicated than expected.",
+    text_hi: "रिक्त स्थान भरें: ...proved ______ complicated than expected.",
+    options_en: ["less", "more", "much", "rather"],
+    options_hi: ["less", "more", "much", "rather"],
+    ans: 1,
+    sol_en: "more.",
+    sol_hi: "more।"
+  },
+  {
+    id: 85, sec: 3,
+    text_en: "Error in: That the report failed to address... (1) / unrest were surprising (2) / given data (3) / months (4)",
+    text_hi: "वाक्य में त्रुटि पहचानें:",
+    options_en: ["(1)", "(2)", "(3)", "(4)"],
+    options_hi: ["(1)", "(2)", "(3)", "(4)"],
+    ans: 1,
+    sol_en: "Part (2) should have 'was surprising'.",
+    sol_hi: "भाग (2) में 'were' की जगह 'was' आएगा।"
+  },
+  {
+    id: 86, sec: 3,
+    text_en: "Error in: Contentious legislation clause...",
+    text_hi: "त्रुटि पहचानें:",
+    options_en: ["(1)", "(2)", "(3)", "(4)"],
+    options_hi: ["(1)", "(2)", "(3)", "(4)"],
+    ans: 2,
+    sol_en: "Part (3).",
+    sol_hi: "भाग (3)।"
+  },
+  {
+    id: 87, sec: 3,
+    text_en: "Active to passive: 'They have been neglecting maintenance of archives...'",
+    text_hi: "Passive voice में बदलें:",
+    options_en: [
+      "Maintenance had been neglected...",
+      "Maintenance is being neglected...",
+      "Maintenance was being neglected...",
+      "Maintenance of the archives has been being neglected by them for years."
+    ],
+    options_hi: [
+      "Maintenance had been neglected...",
+      "Maintenance is being neglected...",
+      "Maintenance was being neglected...",
+      "Maintenance of the archives has been being neglected by them for years."
+    ],
+    ans: 3,
+    sol_en: "has been being neglected.",
+    sol_hi: "has been being neglected।"
+  },
+  {
+    id: 88, sec: 3,
+    text_en: "Homonym of 'introit':",
+    text_hi: "सही संदर्भ वाला वाक्य:",
+    options_en: [
+      "The child sang the introit during the intermission.",
+      "The introit was replaced by an organ improvisation.",
+      "The missal included Latin text for the introit.",
+      "The cantor rehearsed the Sunday introit."
+    ],
+    options_hi: [
+      "The child sang the introit during the intermission.",
+      "The introit was replaced by an organ improvisation.",
+      "The missal included Latin text for the introit.",
+      "The cantor rehearsed the Sunday introit."
+    ],
+    ans: 1,
+    sol_en: "Option B.",
+    sol_hi: "विकल्प B।"
+  },
+  {
+    id: 89, sec: 3,
+    text_en: "Passive to active: 'It was being suggested by multiple sources...'",
+    text_hi: "Active voice:",
+    options_en: [
+      "Multiple sources suggested the operation was compromised internally.",
+      "The operation was compromised...",
+      "The sources were suggesting...",
+      "The operation had compromised..."
+    ],
+    options_hi: [
+      "Multiple sources suggested the operation was compromised internally.",
+      "The operation was compromised...",
+      "The sources were suggesting...",
+      "The operation had compromised..."
+    ],
+    ans: 0,
+    sol_en: "Multiple sources suggested...",
+    sol_hi: "विकल्प A।"
+  },
+  {
+    id: 90, sec: 3,
+    text_en: "How is wisdom primarily acquired according to passage?",
+    text_hi: "ज्ञान मुख्य रूप से कैसे अर्जित किया जाता है?",
+    options_en: ["Through textbooks", "Through emotional detachment", "Through experience and reflection", "Through algorithmic thinking"],
+    options_hi: ["पाठ्यपुस्तकों द्वारा", "भावनात्मक अलगाव द्वारा", "अनुभव और चिंतन द्वारा", "एल्गोरिदम द्वारा"],
+    ans: 2,
+    sol_en: "Through experience and reflection.",
+    sol_hi: "अनुभव और आत्मचिंतन द्वारा।"
+  },
+  {
+    id: 91, sec: 3,
+    text_en: "'Wisdom enriches the soul' implies:",
+    text_hi: "'Wisdom enriches the soul' का अर्थ:",
+    options_en: ["Enhances academic success", "It fosters deeper moral insight", "Improves expression", "Sharpens math"],
+    options_hi: ["अकादमिक सफलता", "गहरी नैतिक अंतर्दृष्टि विकसित करता है", "अभिव्यक्ति सुधारता है", "गणित तेज़ करता है"],
+    ans: 1,
+    sol_en: "It fosters deeper moral insight.",
+    sol_hi: "यह गहरी नैतिक अंतर्दृष्टि विकसित करता है।"
+  },
+  {
+    id: 92, sec: 3,
+    text_en: "Who can be wise without formal education?",
+    text_hi: "औपचारिक शिक्षा के बिना कौन बुद्धिमान हो सकता है?",
+    options_en: ["Scientists", "School children", "Elders and artisans", "Technocrats"],
+    options_hi: ["वैज्ञानिक", "स्कूली बच्चे", "बुजुर्ग और शिल्पकार", "तकनीकविद"],
+    ans: 2,
+    sol_en: "Elders and artisans.",
+    sol_hi: "बुजुर्ग और शिल्पकार।"
+  },
+  {
+    id: 93, sec: 3,
+    text_en: "Central contrast drawn in passage:",
+    text_hi: "गद्यांश का मुख्य अंतर:",
+    options_en: ["Education vs. career", "Intelligence vs. memory", "Reading vs. writing", "Formal learning vs. applied wisdom"],
+    options_hi: ["शिक्षा बनाम करियर", "बुद्धि बनाम याददाश्त", "पढ़ना बनाम लिखना", "औपचारिक शिक्षा बनाम व्यावहारिक ज्ञान"],
+    ans: 3,
+    sol_en: "Formal learning vs. applied wisdom.",
+    sol_hi: "औपचारिक शिक्षा बनाम व्यावहारिक ज्ञान।"
+  },
+  {
+    id: 94, sec: 3,
+    text_en: "Why gap between education and wisdom widened?",
+    text_hi: "शिक्षा और ज्ञान के बीच दूरी क्यों बढ़ी?",
+    options_en: ["Social media", "Wisdom not valued", "Because of rote learning and algorithmic methods", "People stop learning"],
+    options_hi: ["सोशल मीडिया", "ज्ञान का मूल्य न होना", "रटंत शिक्षा और एल्गोरिदमिक तरीकों के कारण", "सीखना बंद करना"],
+    ans: 2,
+    sol_en: "Rote learning and algorithms.",
+    sol_hi: "रटने की प्रवृत्ति और मानकीकृत तरीके।"
+  },
+  {
+    id: 95, sec: 3,
+    text_en: "Replace: reputation 'to be a kind woman'",
+    text_hi: "सही रूप चुनें:",
+    options_en: ["to have kindness", "of being a kind woman", "of being the kind woman", "to be kind-hearted"],
+    options_hi: ["to have kindness", "of being a kind woman", "of being the kind woman", "to be kind-hearted"],
+    ans: 1,
+    sol_en: "of being a kind woman.",
+    sol_hi: "of being a kind woman।"
+  },
+  {
+    id: 96, sec: 3,
+    text_en: "Replace: 'to avoid eating sweets and doing exercise regularly'",
+    text_hi: "समानांतर क्रिया रूप चुनें:",
+    options_en: [
+      "avoiding sweets and doing regular exercise",
+      "to avoid sweets and to exercises regularly",
+      "to avoid eating sweets and to exercise regularly",
+      "to not eat sweets and do exercises"
+    ],
+    options_hi: [
+      "avoiding sweets and doing regular exercise",
+      "to avoid sweets and to exercises regularly",
+      "to avoid eating sweets and to exercise regularly",
+      "to not eat sweets and do exercises"
+    ],
+    ans: 2,
+    sol_en: "to avoid eating sweets and to exercise regularly.",
+    sol_hi: "to avoid eating sweets and to exercise regularly।"
+  },
+  {
+    id: 97, sec: 3,
+    text_en: "Indirect: He asked me, 'Have you done your homework?'",
+    text_hi: "Indirect speech:",
+    options_en: [
+      "He asked me if I had done my homework.",
+      "He asked me have I done my homework.",
+      "He asked me whether I have done my homework.",
+      "He asked me whether had I done my homework."
+    ],
+    options_hi: [
+      "He asked me if I had done my homework.",
+      "He asked me have I done my homework.",
+      "He asked me whether I have done my homework.",
+      "He asked me whether had I done my homework."
+    ],
+    ans: 0,
+    sol_en: "He asked me if I had done my homework.",
+    sol_hi: "He asked me if I had done my homework।"
+  },
+  {
+    id: 98, sec: 3,
+    text_en: "Direct: He said that he would join the meeting after lunch.",
+    text_hi: "Direct speech:",
+    options_en: [
+      "'I will join the meeting after lunch,' he said.",
+      "'I would join the meeting after lunch,' he said.",
+      "'I shall join the meeting after lunch,' he said.",
+      "'I can join the meeting after lunch,' he said."
+    ],
+    options_hi: [
+      "'I will join the meeting after lunch,' he said.",
+      "'I would join the meeting after lunch,' he said.",
+      "'I shall join the meeting after lunch,' he said.",
+      "'I can join the meeting after lunch,' he said."
+    ],
+    ans: 0,
+    sol_en: "'I will join the meeting after lunch,' he said.",
+    sol_hi: "'I will join the meeting after lunch,' he said।"
+  },
+  {
+    id: 99, sec: 3,
+    text_en: "Logical order of steps: 3-2-4-1",
+    text_hi: "तार्किक क्रम: 3-2-4-1",
+    options_en: ["3-2-4-1", "2-3-1-4", "3-1-4-2", "4-1-2-3"],
+    options_hi: ["3-2-4-1", "2-3-1-4", "3-1-4-2", "4-1-2-3"],
+    ans: 0,
+    sol_en: "3-2-4-1.",
+    sol_hi: "3-2-4-1।"
+  },
+  {
+    id: 100, sec: 3,
+    text_en: "Paragraph order for Research definition: 2, 1, 3, 4",
+    text_hi: "अनुच्छेद का सही क्रम: 2, 1, 3, 4",
+    options_en: ["2, 1, 3, 4", "1, 2, 4, 3", "4, 3, 2, 1", "3, 4, 1, 2"],
+    options_hi: ["2, 1, 3, 4", "1, 2, 4, 3", "4, 3, 2, 1", "3, 4, 1, 2"],
+    ans: 0,
+    sol_en: "2, 1, 3, 4.",
+    sol_hi: "2, 1, 3, 4।"
+  }
+];
+
+let currentSec = 0;
+let currentQIdx = 0;
+const userAnswers = new Array(100).fill(null);
+const userStatus = new Array(100).fill('not-visited');
+
+const secNames = {
+  en: ["Part-A: Reasoning (Q1-25)", "Part-B: Gen Awareness (Q26-50)", "Part-C: Quantitative Aptitude (Q51-75)", "Part-D: English (Q76-100)"],
+  hi: ["भाग-क: सामान्य बुद्धिमत्ता और तर्कशक्ति (Q1-25)", "भाग-ख: सामान्य जागरूकता (Q26-50)", "भाग-ग: संख्यात्मक अभिरुचि (Q51-75)", "भाग-घ: अंग्रेज़ी समझ (Q76-100)"]
+};
+
+let secTimeLeft = [900, 900, 900, 900];
+let timerInterval = null;
+
+function init() {
+  updateUILanguage();
+}
+
+function changeLanguage(lang) {
+  currentLang = lang;
+  updateUILanguage();
+  loadQuestion(currentQIdx);
+  if (document.getElementById("resultModal").style.display === "flex") {
+    generateSolutionsMarkup();
+  }
+}
+
+function updateUILanguage() {
+  const t = uiStrings[currentLang];
+  document.getElementById("instructionsContent").innerHTML = t.instHtml;
+  document.getElementById("lblDeclaration").innerText = t.declaration;
+
+  document.getElementById("btnReviewNext").innerText = t.btnRevNext;
+  document.getElementById("btnClearResp").innerText = t.btnClear;
+  document.getElementById("btnPrevQ").innerText = t.btnPrev;
+  document.getElementById("btnSaveNext").innerText = t.btnSaveNext;
+  document.getElementById("btnSubmitExam").innerText = t.btnSubmit;
+  document.getElementById("markingTag").innerText = t.marking;
+
+  document.getElementById("legAns").innerText = t.ans;
+  document.getElementById("legNotAns").innerText = t.notAns;
+  document.getElementById("legNotVis").innerText = t.notVis;
+  document.getElementById("legRev").innerText = t.rev;
+
+  document.getElementById("secBadgeName").textContent = secNames[currentLang][currentSec];
+  document.querySelectorAll('.sec-tab').forEach((tab, i) => {
+    tab.textContent = secNames[currentLang][i].split("(")[0];
+  });
+}
+
+function toggleStartBtn() {
+  const chk = document.getElementById("chkAgreement");
+  document.getElementById("btnStartTest").disabled = !chk.checked;
+}
+
+function beginExam() {
+  document.getElementById("instructionsScreen").style.display = "none";
+  document.getElementById("btnSubmitExam").style.display = "block";
+  renderPalette();
+  loadQuestion(0);
+  startTimer();
+}
+
+function startTimer() {
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    if (secTimeLeft[currentSec] > 0) {
+      secTimeLeft[currentSec]--;
+      updateTimerDisplay();
+    } else {
+      alert(`Time up for ${secNames[currentLang][currentSec]}!`);
+      if (currentSec < 3) switchSection(currentSec + 1);
+      else { clearInterval(timerInterval); submitExam(); }
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const m = Math.floor(secTimeLeft[currentSec] / 60);
+  const s = secTimeLeft[currentSec] % 60;
+  const timeBox = document.getElementById("timeRemaining");
+  timeBox.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  if (secTimeLeft[currentSec] < 120) timeBox.classList.add('warning');
+  else timeBox.classList.remove('warning');
+}
+
+function switchSection(secIdx) {
+  currentSec = secIdx;
+  document.querySelectorAll('.sec-tab').forEach((tab, i) => tab.classList.toggle('active', i === currentSec));
+  document.getElementById("secBadgeName").textContent = secNames[currentLang][currentSec];
+  renderPalette();
+  loadQuestion(currentSec * 25);
+  updateTimerDisplay();
+}
+
+function loadQuestion(idx) {
+  currentQIdx = idx;
+  const q = examData[idx];
+  if (userStatus[idx] === 'not-visited') userStatus[idx] = 'not-answered';
+
+  const t = uiStrings[currentLang];
+  document.getElementById("qNumberDisplay").textContent = `${t.qNum} ${idx + 1}`;
+  
+  const questionText = currentLang === 'hi' ? q.text_hi : q.text_en;
+  const optionsArr = currentLang === 'hi' ? q.options_hi : q.options_en;
+
+  document.getElementById("qTextDisplay").innerText = questionText;
+
+  const optContainer = document.getElementById("optionsContainer");
+  optContainer.innerHTML = '';
+  optionsArr.forEach((opt, optIndex) => {
+    const isChecked = userAnswers[idx] === optIndex ? 'checked' : '';
+    optContainer.innerHTML += `
+      <label class="opt-label">
+        <input type="radio" name="optSelect" value="${optIndex}" ${isChecked} onchange="selectOption(${optIndex})">
+        <span><b>${String.fromCharCode(65 + optIndex)}.</b> ${opt}</span>
+      </label>
+    `;
+  });
+  renderPalette();
+}
+
+function selectOption(optIndex) { userAnswers[currentQIdx] = optIndex; }
+function saveAndNext() {
+  userStatus[currentQIdx] = (userAnswers[currentQIdx] !== null) ? 'answered' : 'not-answered';
+  goToNext();
+}
+function markForReviewAndNext() {
+  userStatus[currentQIdx] = (userAnswers[currentQIdx] !== null) ? 'ans-review' : 'review';
+  goToNext();
+}
+function clearResponse() {
+  userAnswers[currentQIdx] = null;
+  userStatus[currentQIdx] = 'not-answered';
+  loadQuestion(currentQIdx);
+}
+function goToNext() {
+  const secEnd = currentSec * 25 + 24;
+  if (currentQIdx < secEnd) loadQuestion(currentQIdx + 1);
+  else if (currentSec < 3) switchSection(currentSec + 1);
+  else renderPalette();
+}
+function prevQuestion() {
+  if (currentQIdx > currentSec * 25) loadQuestion(currentQIdx - 1);
+}
+
+function renderPalette() {
+  const pGrid = document.getElementById("paletteGrid");
+  pGrid.innerHTML = '';
+  const secStart = currentSec * 25;
+  for (let i = secStart; i < secStart + 25; i++) {
+    const btn = document.createElement("button");
+    btn.className = `p-btn ${userStatus[i]}`;
+    if (i === currentQIdx) btn.classList.add('active');
+    btn.textContent = i + 1;
+    btn.onclick = () => loadQuestion(i);
+    pGrid.appendChild(btn);
+  }
+}
+
+function submitExam() {
+  clearInterval(timerInterval);
+  let totalScore = 0, correctCount = 0, wrongCount = 0, attemptedCount = 0;
+  const secStats = [{ att: 0, cor: 0, wrg: 0, marks: 0 }, { att: 0, cor: 0, wrg: 0, marks: 0 }, { att: 0, cor: 0, wrg: 0, marks: 0 }, { att: 0, cor: 0, wrg: 0, marks: 0 }];
+
+  examData.forEach((q, i) => {
+    const s = q.sec;
+    if (userAnswers[i] !== null) {
+      attemptedCount++;
+      secStats[s].att++;
+      if (userAnswers[i] === q.ans) {
+        correctCount++;
+        secStats[s].cor++;
+        secStats[s].marks += 2.0;
+        totalScore += 2.0;
+      } else {
+        wrongCount++;
+        secStats[s].wrg++;
+        secStats[s].marks -= 0.5;
+        totalScore -= 0.5;
+      }
+    }
+  });
+
+  const accuracy = attemptedCount > 0 ? ((correctCount / attemptedCount) * 100).toFixed(1) : 0;
+  document.getElementById("resScore").textContent = `${totalScore.toFixed(2)} / 200`;
+  document.getElementById("resAccuracy").textContent = `${accuracy}%`;
+  document.getElementById("resAttempted").textContent = `${attemptedCount} / 100`;
+  document.getElementById("resCorrectWrong").textContent = `${correctCount} / ${wrongCount}`;
+
+  const tbody = document.getElementById("secBreakdownTbody");
+  tbody.innerHTML = '';
+  secNames[currentLang].forEach((name, i) => {
+    tbody.innerHTML += `
+      <tr>
+        <td style="text-align:left; font-weight:600;">${name}</td>
+        <td>25</td>
+        <td>${secStats[i].att}</td>
+        <td style="color:var(--green); font-weight:700;">${secStats[i].cor}</td>
+        <td style="color:var(--red); font-weight:700;">${secStats[i].wrg}</td>
+        <td style="font-weight:700;">${secStats[i].marks.toFixed(2)}</td>
+      </tr>
+    `;
+  });
+
+  generateSolutionsMarkup();
+  document.getElementById("resultModal").style.display = "flex";
+}
+
+function toggleSolutions() {
+  const box = document.getElementById("solContainer");
+  box.style.display = (box.style.display === "block") ? "none" : "block";
+  if (box.style.display === "block") box.scrollIntoView({ behavior: 'smooth' });
+}
+
+function generateSolutionsMarkup() {
+  const list = document.getElementById("solutionsList");
+  list.innerHTML = '';
+  const t = uiStrings[currentLang];
+
+  examData.forEach((q, i) => {
+    const userChoice = userAnswers[i];
+    let statusClass = 'skipped';
+    let statusBadge = `<span style="color:#64748b;">${currentLang === 'hi' ? 'प्रयास नहीं किया' : 'Not Attempted'}</span>`;
+
+    if (userChoice !== null) {
+      if (userChoice === q.ans) {
+        statusClass = 'correct';
+        statusBadge = '<span style="color:var(--green); font-weight:700;">✔ Correct (+2.0)</span>';
+      } else {
+        statusClass = 'incorrect';
+        statusBadge = '<span style="color:var(--red); font-weight:700;">✖ Incorrect (-0.5)</span>';
+      }
+    }
+
+    const qText = currentLang === 'hi' ? q.text_hi : q.text_en;
+    const opts = currentLang === 'hi' ? q.options_hi : q.options_en;
+    const solExplanation = currentLang === 'hi' ? q.sol_hi : q.sol_en;
+
+    list.innerHTML += `
+      <div class="sol-card ${statusClass}" data-status="${statusClass}">
+        <div class="sol-header">
+          <span>Q${i + 1}. [${secNames[currentLang][q.sec]}]</span>
+          <span>${statusBadge}</span>
+        </div>
+        <p style="font-weight:600; margin-bottom:8px; white-space:pre-wrap;">${qText}</p>
+        <div style="font-size:0.85rem; margin-bottom:6px;">
+          ${t.yourAns} <b>${userChoice !== null ? String.fromCharCode(65 + userChoice) + '. ' + opts[userChoice] : t.none}</b><br>
+          ${t.corrAns} <b style="color:var(--green);">${String.fromCharCode(65 + q.ans)}. ${opts[q.ans]}</b>
+        </div>
+        <div class="sol-detail">
+          <b>${t.solExpl}</b><br>${solExplanation}
+        </div>
+      </div>
+    `;
+  });
+}
+
+function filterSolutions(type) {
+  document.querySelectorAll('.sol-card').forEach(card => {
+    if (type === 'all' || card.getAttribute('data-status') === type) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+window.onload = init;
+</script>
+</body>
+</html>

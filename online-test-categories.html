@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ocean Study Classes - Online Test</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fc;
+    color: #18243a;
+}
+
+/* HEADER */
+header {
+    background: linear-gradient(135deg, #082567, #0d47a1);
+    color: white;
+    padding: 18px 20px;
+}
+
+.navbar {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 15px;
+}
+
+/* MAIN */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.page-title h1 {
+    margin: 0;
+    color: #082567;
+    font-size: 34px;
+}
+
+.page-title p {
+    color: #666;
+    margin-top: 10px;
+}
+
+/* TEST CARDS */
+.test-card {
+    background: white;
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.test-info {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.test-icon {
+    width: 55px;
+    height: 55px;
+    background: #e8f0ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+}
+
+.test-info h2 {
+    margin: 0 0 8px;
+    font-size: 21px;
+    color: #082567;
+}
+
+.test-info p {
+    margin: 0;
+    color: #666;
+}
+
+/* BUTTON */
+.start-btn {
+    background: #ff9800;
+    color: white;
+    text-decoration: none;
+    padding: 13px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: inline-block;
+    transition: 0.2s;
+}
+
+.start-btn:hover {
+    background: #e68900;
+    transform: translateY(-2px);
+}
+
+/* COMING SOON */
+.locked {
+    opacity: 0.75;
+}
+
+.coming {
+    background: #777;
+    color: white;
+    padding: 11px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+/* FOOTER */
+footer {
+    margin-top: 60px;
+    background: #082567;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+footer p {
+    margin: 5px;
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    nav a {
+        margin: 0 7px;
+    }
+
+    .page-title h1 {
+        font-size: 28px;
+    }
+
+    .test-card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .test-info {
+        align-items: flex-start;
+    }
+
+    .start-btn,
+    .coming {
+        text-align: center;
+        width: 100%;
+    }
+}
+</style>
+<script type="module">
+    import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+    import {
+        getAuth,
+        onAuthStateChanged
+    }
+    from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAegv8Y_0KgMyjwQIt_ZXqb9_5PNj5TufY",
+        authDomain: "ocean-study-classes.firebaseapp.com",
+        projectId: "ocean-study-classes",
+        storageBucket: "ocean-study-classes.firebasestorage.app",
+        messagingSenderId: "549818570531",
+        appId: "1:549818570531:web:355ec0212ab1ff984e1e96"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+
+        if (!user) {
+            window.location.href = "student-login.html";
+        }
+
+    });
+</script>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="navbar">
+
+        <a href="index.html" class="brand">
+            OCEAN STUDY CLASSES
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="online-test.html">Online Test</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<!-- MAIN CONTENT -->
+<div class="container">
+  <div class="page-title">
+    <h1>ONLINE TEST</h1>
+    <p id="pageSubtitle">Choose your exam category to view available practice tests</p>
+  </div>
+
+  <div id="categoryView" class="category-grid">
+    <button class="category-card" onclick="showCategory('ssc')"><span class="category-icon">📝</span><strong>SSC</strong><small>SSC CGL, CHSL & other SSC tests</small><span class="category-link">VIEW TESTS →</span></button>
+    <button class="category-card" onclick="showCategory('banking')"><span class="category-icon">🏦</span><strong>Banking</strong><small>Banking exam practice tests</small><span class="category-link">VIEW TESTS →</span></button>
+    <button class="category-card" onclick="showCategory('police')"><span class="category-icon">👮</span><strong>UP Police</strong><small>UP Police Constable practice tests</small><span class="category-link">VIEW TESTS →</span></button>
+    <button class="category-card" onclick="showCategory('railway')"><span class="category-icon">🚆</span><strong>Railway</strong><small>NTPC, Group D & other Railway tests</small><span class="category-link">VIEW TESTS →</span></button>
+    <button class="category-card" onclick="showCategory('upsc')"><span class="category-icon">🏛️</span><strong>UPSC</strong><small>Civil Services Prelims & Mains practice</small><span class="category-link">VIEW TESTS →</span></button>
+    <button class="category-card" onclick="showCategory('uppsc')"><span class="category-icon">📚</span><strong>UPPSC</strong><small>PCS Prelims & Mains practice</small><span class="category-link">VIEW TESTS →</span></button>
+  </div>
+
+  <section id="testView" hidden>
+    <button class="back-btn" onclick="showCategories()">← All Exam Categories</button>
+    <h2 id="categoryTitle" class="category-heading"></h2>
+    <div id="testList"></div>
+  </section>
+</div>
+
+<script>
+const examTests = {
+  ssc: { title: 'SSC TESTS', tests: [
+    { title: 'SSC CGL 2025 - TEST 1', detail: '100 Questions | 60 Minutes', href: 'test.html', active: true },
+    { title: 'SSC TEST 2', detail: '100 Questions | 60 Minutes' },
+    { title: 'SSC TEST 3', detail: '100 Questions | 60 Minutes' },
+    { title: 'SSC TEST 4', detail: '100 Questions | 60 Minutes' }
+  ]},
+  banking: { title: 'BANKING TESTS', tests: [
+    { title: 'BANKING MOCK TEST 1', detail: 'Practice test', coming: true },
+    { title: 'BANKING MOCK TEST 2', detail: 'Practice test', coming: true }
+  ]},
+  police: { title: 'UP POLICE TESTS', tests: [
+    { title: 'UP POLICE CONSTABLE - MOCK TEST 1', detail: '150 Questions | 120 Minutes', href: 'up-police-test.html', active: true },
+    { title: 'UP POLICE CONSTABLE - MOCK TEST 2', detail: 'Practice test', coming: true }
+  ]},
+  railway: { title: 'RAILWAY TESTS', tests: [
+    { title: 'RAILWAY NTPC - MOCK TEST 1', detail: 'Practice test', coming: true },
+    { title: 'RAILWAY GROUP D - MOCK TEST 1', detail: 'Practice test', coming: true }
+  ]},
+  upsc: { title: 'UPSC TESTS', tests: [
+    { title: 'UPSC CIVIL SERVICES - MOCK TEST 1', detail: 'Prelims practice test', coming: true },
+    { title: 'UPSC CIVIL SERVICES - MOCK TEST 2', detail: 'Prelims practice test', coming: true }
+  ]},
+  uppsc: { title: 'UPPSC TESTS', tests: [
+    { title: 'UPPSC PCS - MOCK TEST 1', detail: 'Prelims practice test', coming: true },
+    { title: 'UPPSC PCS - MOCK TEST 2', detail: 'Prelims practice test', coming: true }
+  ]}
+};
+function showCategory(key) {
+  const category = examTests[key];
+  if (!category) return;
+  document.getElementById('categoryView').hidden = true;
+  document.getElementById('testView').hidden = false;
+  document.getElementById('categoryTitle').textContent = category.title;
+  document.getElementById('pageSubtitle').textContent = 'Select a test to begin your practice';
+  const list = document.getElementById('testList');
+  list.replaceChildren();
+  category.tests.forEach((test, index) => {
+    const card = document.createElement('div');
+    card.className = 'test-card' + (test.active ? '' : ' locked');
+    const info = document.createElement('div'); info.className = 'test-info';
+    const ico = document.createElement('div'); ico.className = 'test-icon'; ico.textContent = test.active ? '📝' : '🔒';
+    const textBox = document.createElement('div');
+    const h = document.createElement('h2'); h.textContent = test.title;
+    const p = document.createElement('p'); p.textContent = test.detail;
+    textBox.append(h,p); info.append(ico,textBox); card.append(info);
+    if (test.active) {
+      const a = document.createElement('a'); a.className='start-btn'; a.href=test.href; a.textContent='START TEST'; card.append(a);
+    } else {
+      const span = document.createElement('span'); span.className='coming'; span.textContent='COMING SOON'; card.append(span);
+    }
+    list.append(card);
+  });
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function showCategories() {
+  document.getElementById('testView').hidden = true;
+  document.getElementById('categoryView').hidden = false;
+  document.getElementById('pageSubtitle').textContent = 'Choose your exam category to view available practice tests';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+</script>
+
+<style>
+[hidden] { display:none !important; }
+.category-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+.category-card { border:0; cursor:pointer; text-align:left; background:white; color:#18243a; border-radius:14px; padding:25px; min-height:185px; box-shadow:0 5px 18px rgba(0,0,0,.08); display:flex; flex-direction:column; align-items:flex-start; gap:10px; font:inherit; transition:transform .2s, box-shadow .2s; }
+.category-card:hover { transform:translateY(-3px); box-shadow:0 8px 22px rgba(0,0,0,.13); }
+.category-icon { font-size:30px; }
+.category-card strong { color:#082567; font-size:23px; }
+.category-card small { color:#666; font-size:14px; }
+.category-link { color:#e68900; font-weight:bold; font-size:13px; margin-top:auto; }
+.category-heading { color:#082567; margin:10px 0 20px; }
+.back-btn { border:0; background:#e8f0ff; color:#082567; padding:10px 15px; border-radius:8px; font-weight:bold; cursor:pointer; margin-bottom:18px; }
+@media(max-width:700px) { .category-grid { grid-template-columns:1fr; } .category-card { min-height:150px; } }
+</style>
+
+<!-- FOOTER -->
+<footer>
+    <p><strong>OCEAN STUDY CLASSES</strong></p>
+    <p>Your Success Our Passion</p>
+</footer>
+
+</body>
+</html>

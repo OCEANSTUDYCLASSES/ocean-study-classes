@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>UP Police Course | Ocean Study Classes</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, "Noto Sans Devanagari", sans-serif;
+    background:#f4f8fc;
+    color:#17233c;
+    line-height:1.6;
+}
+
+/* HEADER */
+
+header{
+    background:#07549a;
+    color:white;
+    padding:10px 0;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 3px 12px rgba(0,0,0,.2);
+}
+
+.navbar{
+    max-width:1200px;
+    margin:auto;
+    padding:0 20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    color:white;
+    text-decoration:none;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.logo{
+    width:55px;
+    height:55px;
+    object-fit:contain;
+    background:white;
+    border-radius:50%;
+}
+
+nav{
+    display:flex;
+    gap:22px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:#ffd21a;
+}
+
+
+/* HERO */
+
+.hero{
+    background:linear-gradient(110deg,#eaf7ff,#ffffff,#e8f3ff);
+    padding:55px 20px;
+}
+
+.hero-content{
+    max-width:1200px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+
+    align-items:center;
+}
+
+.hero h1{
+    font-size:65px;
+    color:#063b79;
+    line-height:1;
+}
+
+.hero h1 span{
+    color:#f4b400;
+}
+
+.hero h2{
+    margin:20px 0;
+    color:#174d83;
+}
+
+.hero p{
+    font-size:18px;
+}
+
+.hero-image{
+    width:100%;
+    max-height:430px;
+    object-fit:cover;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.btn{
+    display:inline-block;
+    margin-top:25px;
+
+    padding:14px 30px;
+
+    background:#07549a;
+    color:white;
+
+    border-radius:30px;
+
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#05386a;
+}
+
+
+/* GENERAL */
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:35px;
+    color:#07549a;
+    margin-bottom:30px;
+}
+
+
+/* CARDS */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+
+    border-radius:16px;
+
+    box-shadow:0 5px 18px rgba(22,59,90,.12);
+
+    border:1px solid #e3edf6;
+}
+
+.card h3{
+    color:#07549a;
+    margin-bottom:10px;
+    font-size:22px;
+}
+
+.exam-card{
+    border-top:5px solid #07549a;
+}
+
+.exam-card h3{
+    font-size:25px;
+}
+
+.badge{
+    display:inline-block;
+
+    background:#fff0a8;
+    color:#735600;
+
+    padding:5px 12px;
+
+    border-radius:20px;
+
+    font-size:13px;
+    font-weight:bold;
+
+    margin-bottom:10px;
+}
+
+
+/* TWO COLUMN */
+
+.two-column{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+
+/* SYLLABUS */
+
+.syllabus{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.subject{
+    background:white;
+
+    padding:25px;
+
+    text-align:center;
+
+    border-radius:15px;
+
+    border:2px solid #e5eef8;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.subject-icon{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.subject h3{
+    color:#07549a;
+}
+
+
+/* LIST */
+
+ul{
+    padding-left:22px;
+}
+
+li{
+    margin-bottom:8px;
+}
+
+
+/* HIGHLIGHT */
+
+.highlight{
+    background:linear-gradient(135deg,#07549a,#0b72c7);
+
+    color:white;
+
+    padding:40px;
+
+    border-radius:20px;
+}
+
+.highlight h2{
+    font-size:32px;
+    margin-bottom:20px;
+}
+
+.highlight .card{
+    color:#17233c;
+}
+
+
+/* COURSE */
+
+.course-box{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.price-box{
+    text-align:center;
+    background:#f4f8fc;
+    padding:30px;
+    border-radius:18px;
+    border:2px solid #e1ebf5;
+}
+
+.price{
+    font-size:42px;
+    font-weight:bold;
+    color:#07549a;
+}
+
+
+/* CTA */
+
+.cta{
+    text-align:center;
+
+    background:#063b79;
+
+    color:white;
+
+    padding:50px 20px;
+}
+
+.cta h2{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.cta .btn{
+    background:#ffd21a;
+    color:#063b79;
+}
+
+
+/* FOOTER */
+
+footer{
+    background:#092b50;
+    color:white;
+
+    text-align:center;
+
+    padding:25px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+    .navbar{
+        flex-direction:column;
+        gap:12px;
+    }
+
+    nav{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero-content{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:55px;
+    }
+
+    .grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .syllabus{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .two-column{
+        grid-template-columns:1fr;
+    }
+
+    .course-box{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:550px){
+
+    .grid,
+    .syllabus,
+    .course-box{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .section-title{
+        font-size:28px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+<div class="navbar">
+
+<a href="index.html" class="brand">
+
+<img src="images/logo.png"
+     class="logo"
+     alt="Ocean Study Classes Logo">
+
+<span>OCEAN STUDY CLASSES</span>
+
+</a>
+
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="index.html#courses">Courses</a>
+
+<a href="online-test.html">Online Test</a>
+
+<a href="index.html#faculty">Faculty</a>
+
+<a href="index.html#contact">Contact</a>
+
+</nav>
+
+</div>
+
+</header>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+
+<div>
+
+<span class="badge">
+UP POLICE EXAM PREPARATION
+</span>
+
+<h1>
+UP POLICE
+<span>COURSE</span>
+</h1>
+
+<h2>
+UP Police की तैयारी सही दिशा और नियमित अभ्यास के साथ
+</h2>
+
+<p>
+
+UP Police भर्ती परीक्षा की तैयारी के लिए
+Concept + Practice + Previous Year Questions
++ Mock Tests + Revision का structured program.
+
+</p>
+
+
+<a href="#admission" class="btn">
+Admission / Enquiry →
+</a>
+
+</div>
+
+
+<div>
+
+<img src="images/up-police-banner.jpg"
+     class="hero-image"
+     alt="UP Police Course">
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ================= ABOUT ================= -->
+
+<section class="container">
+
+<h2 class="section-title">
+UP Police क्या है?
+</h2>
+
+
+<div class="card">
+
+<p>
+
+<b>Uttar Pradesh Police</b> राज्य में कानून-व्यवस्था,
+सुरक्षा और पुलिस सेवाओं से संबंधित विभिन्न पदों पर
+भर्ती के लिए समय-समय पर recruitment examinations
+आयोजित करती है।
+
+</p>
+
+<br>
+
+<p>
+
+किसी भी भर्ती में eligibility, vacancies, age limit,
+exam pattern और selection process संबंधित official
+notification के अनुसार अलग हो सकते हैं।
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= EXAM ================= -->
+
+<section class="container">
+
+<h2 class="section-title">
+UP Police Preparation
+</h2>
+
+
+<div class="grid">
+
+
+<div class="card exam-card">
+
+<span class="badge">
+Written Exam
+</span>
+
+<h3>📝 Written Examination</h3>
+
+<p>
+
+General Knowledge, General Hindi,
+Numerical & Mental Ability और Reasoning
+जैसे subjects की तैयारी।
+
+</p>
+
+</div>
+
+
+
+<div class="card exam-card">
+
+<span class="badge">
+Physical
+</span>
+
+<h3>🏃 Physical Test</h3>
+
+<p>
+
+भर्ती के अनुसार Physical Standard Test
+और Physical Efficiency Test की तैयारी।
+
+</p>
+
+</div>
+
+
+
+<div class="card exam-card">
+
+<span class="badge">
+Next Stage
+</span>
+
+<h3>📋 Further Process</h3>
+
+<p>
+
+Document Verification तथा भर्ती notification
+में निर्धारित अन्य stages।
+
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ================= ELIGIBILITY ================= -->
+
+<section class="container">
+
+<h2 class="section-title">
+Eligibility & Basic Information
+</h2>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<h3>🎓 Educational Qualification</h3>
+
+<p>
+
+Qualification post और recruitment notification
+के अनुसार निर्धारित होती है।
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>🎂 Age Limit</h3>
+
+<p>
+
+Age limit और category-wise relaxation
+संबंधित official notification के अनुसार होती है।
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>🇮🇳 Nationality</h3>
+
+<p>
+
+Nationality और अन्य eligibility conditions
+भर्ती की official notification में दी जाती हैं।
+
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ================= SYLLABUS ================= -->
+
+<section class="container">
+
+<h2 class="section-title">
+UP Police Syllabus
+</h2>
+
+
+<div class="syllabus">
+
+
+<div class="subject">
+
+<div class="subject-icon">
+📖
+</div>
+
+<h3>General Hindi</h3>
+
+<p>
+
+व्याकरण<br>
+विलोम / पर्यायवाची<br>
+संधि<br>
+समास<br>
+मुहावरे<br>
+वाक्य शुद्धि
+
+</p>
+
+</div>
+
+
+
+<div class="subject">
+
+<div class="subject-icon">
+🌍
+</div>
+
+<h3>GK / GS</h3>
+
+<p>
+
+History<br>
+Geography<br>
+Polity<br>
+Economy<br>
+Science<br>
+Current Affairs
+
+</p>
+
+</div>
+
+
+
+<div class="subject">
+
+<div class="subject-icon">
+➗
+</div>
+
+<h3>Numerical Ability</h3>
+
+<p>
+
+Number System<br>
+Percentage<br>
+Ratio<br>
+Average<br>
+Profit & Loss<br>
+Time & Work
+
+</p>
+
+</div>
+
+
+
+<div class="subject">
+
+<div class="subject-icon">
+🧠
+</div>
+
+<h3>Reasoning</h3>
+
+<p>
+
+Analogy<br>
+Series<br>
+Coding-Decoding<br>
+Classification<br>
+Direction<br>
+Blood Relation
+
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ================= PREPARATION ================= -->
+
+<section class="container">
+
+<h2 class="section-title">
+UP Police Preparation Strategy
+</h2>
+
+
+<div class="two-column">
+
+
+<div class="card">
+
+<h3>
+1. Concept Building
+</h3>
+
+<ul>
+
+<li>Basic concepts को मजबूत करें।</li>
+
+<li>Topic-wise notes तैयार करें।</li>
+
+<li>Important formulas और rules revise करें।</li>
+
+<li>Weak topics पर अतिरिक्त practice करें।</li>
+
+</ul>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+2. Daily Practice
+</h3>
+
+<ul>
+
+<li>Daily questions solve करें।</li>
+
+<li>Previous Year Questions लगाएँ।</li>
+
+<li>Time management पर ध्यान दें।</li>
+
+<li>गलत questions की revision करें।</li>
+
+</ul>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ================= TEST ================= -->
+
+<section class="container">
+
+
+<div class="highlight">
+
+<h2>
+🎯 Regular Test & Practice
+</h2>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<h3>
+📝 Chapter Tests
+</h3>
+
+<p>
+
+हर topic के बाद practice और
+chapter-wise tests।
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+📊 Mock Tests
+</h3>
+
+<p>
+
+Exam pattern के अनुसार
+full-length mock practice।
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+🔄 Revision
+</h3>
+
+<p>
+
+Important questions और
+weak topics की regular revision।
+
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= OCEAN COURSE ================= -->
+
+<section class="container">
+
+<h2 class="section-title">
+Ocean Study Classes UP Police Course
+</h2>
+
+
+<div class="course-box">
+
+
+<div class="card">
+
+<h3>
+📚 Complete Classes
+</h3>
+
+<p>
+
+UP Police preparation के लिए
+subject-wise structured classes।
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+📝 Regular Tests</h3>
+
+<p>
+
+Chapter-wise practice और
+mock test based preparation।
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+📖 Study Material
+</h3>
+
+<p>
+
+Notes, practice questions और
+Previous Year Questions।
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+🎯 Exam Focus
+</h3>
+
+<p>
+
+Exam-oriented preparation,
+speed और accuracy practice।
+
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+👨‍🏫 Faculty Guidance
+</h3>
+
+<p>
+
+Regular guidance और
+doubt support।
+
+</p>
+
+</div>
+
+
+
+<div class="price-box">
+
+<h3>
+UP Police Course
+</h3>
+
+<p>
+Duration
+</p>
+
+<h2>
+6 Months
+</h2>
+
+<p>
+Course Fee
+</p>
+
+<div class="price">
+₹9,999
+</div>
+
+<a href="#admission" class="btn">
+Admission
+</a>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ================= COURSE FEATURES ================= -->
+
+<section class="container">
+
+<h2 class="section-title">
+Course में क्या मिलेगा?
+</h2>
+
+
+<div class="grid">
+
+
+<div class="card">
+
+<h3>✓ Complete Syllabus</h3>
+
+<p>
+पूरे syllabus को structured तरीके से cover करने का plan।
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>✓ Practice Questions</h3>
+
+<p>
+Topic-wise और exam-oriented questions।
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>✓ Previous Year Questions</h3>
+
+<p>
+Previous Year Questions के माध्यम से exam pattern की practice।
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>✓ Mock Tests</h3>
+
+<p>
+Regular tests के माध्यम से preparation की practice।
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>✓ Revision</h3>
+
+<p>
+Important topics और questions की regular revision।
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>✓ Doubt Support</h3>
+
+<p>
+Difficult topics और questions को समझने में guidance।
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ================= ADMISSION ================= -->
+
+<section class="cta" id="admission">
+
+<h2>
+🚔 UP Police की तैयारी शुरू करें
+</h2>
+
+<p>
+
+Ocean Study Classes में UP Police preparation
+के लिए Admission / Course Details जानने के लिए
+आज ही संपर्क करें।
+
+</p>
+
+
+<a href="tel:7048918075" class="btn">
+
+📞 Call: 7048918075
+
+</a>
+
+
+<a href="https://wa.me/917048918075"
+   target="_blank"
+   class="btn"
+   style="margin-left:8px;">
+
+WhatsApp
+
+</a>
+
+
+<p style="margin-top:20px;">
+
+📍 Opp. ASM Polytechnic,
+Krishna Vihar, Mathura (UP)
+
+</p>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<h3>
+OCEAN STUDY CLASSES
+</h3>
+
+<p>
+Your Success Our Passion
+</p>
+
+<br>
+
+<p>
+SSC • Banking • Railway • UPSC • UPPCS • UP Police • Delhi Police
+</p>
+
+<br>
+
+<p>
+© 2026 Ocean Study Classes. All Rights Reserved.
+</p>
+
+</footer>
+
+
+</body>
+</html>

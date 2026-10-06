@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Ocean Study Classes | Your Success Our Passion</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --blue: #063b91;
+      --dark-blue: #041b43;
+      --yellow: #ffc400;
+      --light: #f4f7fc;
+      --text: #18243a;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: white;
+      box-shadow: 0 3px 20px rgba(0,0,0,0.10);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 24px 22px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--blue);
+      font-size: 22px;
+      font-weight: 900;
+    }
+     .site-logo {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+    nav {
+      display: flex;
+      gap: 25px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #222;
+      font-weight: 800;
+      font-size: 18px;
+      display: inline-block;
+      transform: translateY(7px);
+    }
+
+    nav a:hover {
+      color: var(--blue);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 8px;
+      background: var(--yellow);
+      color: #111;
+      text-decoration: none;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-blue {
+      background: var(--blue);
+      color: white;
+    }
+
+    .student-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .student-actions .btn {
+      padding: 10px 14px;
+      font-size: 13px;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(120deg, var(--dark-blue), var(--blue));
+      color: white;
+      padding: 85px 22px;
+    }
+
+    .hero-container {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,.35);
+      background: rgba(255,255,255,.10);
+      padding: 7px 14px;
+      border-radius: 30px;
+      color: var(--yellow);
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .yellow {
+      color: var(--yellow);
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: #e0e8f8;
+      font-size: 18px;
+      margin-bottom: 28px;
+    }
+
+    .hero-card {
+      background: white;
+      color: var(--text);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.30);
+    }
+
+
+    .hero-class-photo {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 12px;
+      margin: 14px 0 4px;
+      box-shadow: 0 8px 22px rgba(0,0,0,.16);
+    }
+
+    .hero-card h2 {
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+
+    .hero-card .motto {
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .hero-card hr {
+      border: 0;
+      border-top: 1px solid #ddd;
+      margin: 18px 0;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 75px 22px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: 38px;
+      color: var(--dark-blue);
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: #69758a;
+    }
+
+    /* EXAMS */
+    .exam-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .exam-card {
+      padding: 25px;
+      border-radius: 15px;
+      background: white;
+      border: 1px solid #e3e8f0;
+      box-shadow: 0 8px 25px rgba(0,0,0,.06);
+      text-align: center;
+      transition: .25s;
+    }
+
+    .exam-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--yellow);
+    }
+
+    .exam-icon {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .exam-card h3 {
+      color: var(--blue);
+    }
+
+    /* COURSES */
+    .light {
+      background: var(--light);
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .course-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #e2e7ef;
+      box-shadow: 0 8px 25px rgba(0,0,0,.06);
+    }
+
+    .course-top {
+      background: var(--blue);
+      color: white;
+      padding: 20px;
+      border-bottom: 5px solid var(--yellow);
+    }
+
+    .course-top h3 {
+      font-size: 23px;
+    }
+
+    .course-body {
+      padding: 22px;
+    }
+
+    .price {
+      font-size: 27px;
+      font-weight: 900;
+      color: var(--dark-blue);
+      margin: 12px 0 18px;
+    }
+
+    .course-body ul {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .course-body li {
+      margin: 8px 0;
+    }
+
+    /* FACULTY */
+    .faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .faculty-card {
+      text-align: center;
+      padding: 35px 25px;
+      background: white;
+      border-radius: 18px;
+      border: 1px solid #e2e7ef;
+      box-shadow: 0 8px 25px rgba(0,0,0,.06);
+    }
+
+    .faculty-photo {
+      width: 115px;
+      height: 115px;
+      margin: auto auto 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), #6090df);
+      color: white;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      font-size: 42px;
+      font-weight: 900;
+    }
+
+    .faculty-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .faculty-placeholder {
+      width: 115px;
+      height: 115px;
+      margin: auto auto 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), #6090df);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 30px;
+      font-weight: 900;
+    }
+
+    .faculty-card h3 {
+      color: var(--dark-blue);
+    }
+
+    .faculty-card p {
+      color: #68748a;
+    }
+
+    /* FEATURES */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 28px;
+      background: white;
+      border-radius: 15px;
+      border: 1px solid #e2e7ef;
+    }
+
+    .feature-icon {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .feature h3 {
+      color: var(--blue);
+      margin-bottom: 7px;
+    }
+
+    /* YOUTUBE */
+    .youtube {
+      background: var(--dark-blue);
+      color: white;
+    }
+
+    .youtube .section-title h2 {
+      color: white;
+    }
+
+    .youtube .section-title p {
+      color: #cbd7ed;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .video-card {
+      background: white;
+      color: var(--text);
+      border-radius: 15px;
+      padding: 15px;
+    }
+
+    .video-box {
+      height: 180px;
+      background: linear-gradient(135deg, #111827, #334155);
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 50px;
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .contact-box {
+      background: var(--light);
+      padding: 32px;
+      border-radius: 18px;
+    }
+
+    .contact-item {
+      margin: 20px 0;
+    }
+
+    .contact-item strong {
+      display: block;
+      color: var(--blue);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #03142f;
+      color: #d6e0f1;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    footer h2 {
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    footer .motto {
+      color: var(--yellow);
+      font-weight: bold;
+    }
+
+
+    /* CURRENT AFFAIRS E-BOOK */
+    .ebook-section {
+      background: linear-gradient(135deg, #f4f7fc, #eaf1ff);
+    }
+
+    .ebook-card {
+      max-width: 1050px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 35px;
+      align-items: center;
+      background: white;
+      padding: 30px;
+      border-radius: 22px;
+      border: 1px solid #dfe6f2;
+      box-shadow: 0 12px 35px rgba(0,0,0,.08);
+    }
+
+    .ebook-cover {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 10px 28px rgba(0,0,0,.18);
+      background: #eef3fb;
+    }
+
+    .ebook-content h3 {
+      font-size: 30px;
+      color: var(--dark-blue);
+      margin-bottom: 8px;
+    }
+
+    .ebook-badge {
+      display: inline-block;
+      background: var(--yellow);
+      color: #111;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .ebook-content p {
+      color: #5f6c82;
+      margin-bottom: 18px;
+    }
+
+    .ebook-list {
+      list-style: none;
+      margin: 0 0 22px;
+      padding: 0;
+    }
+
+    .ebook-list li {
+      margin: 8px 0;
+      font-weight: 600;
+    }
+
+    .ebook-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .ebook-reader {
+      max-width: 1050px;
+      margin: 28px auto 0;
+      background: white;
+      border-radius: 18px;
+      padding: 14px;
+      border: 1px solid #dfe6f2;
+      box-shadow: 0 8px 25px rgba(0,0,0,.06);
+    }
+
+    .ebook-reader iframe {
+      width: 100%;
+      height: 720px;
+      border: 0;
+      border-radius: 12px;
+      background: #f3f5f8;
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      .ebook-card {
+        grid-template-columns: 1fr;
+      }
+
+      .ebook-cover {
+        max-width: 360px;
+        margin: auto;
+      }
+
+      .ebook-reader iframe {
+        height: 600px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero-container,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .exam-grid,
+      .course-grid,
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .faculty-grid,
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .brand {
+        font-size: 16px;
+      }
+
+      .student-actions {
+        gap: 5px;
+      }
+
+      .student-actions .btn {
+        padding: 8px 10px;
+        font-size: 11px;
+      }
+
+      .exam-grid,
+      .course-grid,
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 60px 18px;
+      }
+
+      section {
+        padding: 55px 18px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+    }
+  
+
+    @media (max-width: 900px) {
+      .course-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .course-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  
+    .site-logo {
+      width: 285px;
+      height: 88px;
+      object-fit: contain;
+      border-radius: 10px;
+      display: block;
+      transform: translateY(8px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .welcome-brand {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .welcome-logo {
+      width: min(520px, 92%);
+      height: auto;
+      margin: 0 auto 16px;
+      filter: drop-shadow(0 12px 25px rgba(0,0,0,.18));
+      border-radius: 18px;
+    }
+
+    .welcome-brand .welcome-title {
+      font-size: clamp(34px, 6vw, 64px);
+      font-weight: 950;
+      line-height: 1;
+      letter-spacing: .5px;
+      margin: 0 0 10px;
+    }
+
+    .welcome-brand .welcome-motto {
+      font-size: clamp(15px, 2vw, 21px);
+      color: #dce8ff;
+      font-weight: 700;
+    }
+
+    @media (max-width: 700px) {
+      .site-logo { width: 210px; height: 68px; transform: translateY(5px); }
+      .navbar { padding: 16px 12px 12px; }
+      nav a { font-size: 15px; transform: translateY(5px); }
+      .welcome-logo { width: min(430px, 96%); }
+    }
+
+  
+/* ===== PROFESSIONAL OCEAN STUDY CLASSES REDESIGN ===== */
+:root{
+  --blue:#0b4aa2;
+  --deep:#061d49;
+  --navy:#071b3f;
+  --gold:#f7c62f;
+  --sky:#eef5ff;
+  --ink:#13213a;
+  --muted:#66748b;
+  --white:#fff;
+  --shadow:0 18px 50px rgba(6,29,73,.10);
+}
+
+body{
+  font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;
+  background:#fff;
+  color:var(--ink);
+}
+
+header{
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(14px);
+  box-shadow:0 4px 24px rgba(6,29,73,.10);
+}
+
+.navbar{
+  max-width:1280px;
+  padding:12px 24px;
+  min-height:88px;
+}
+
+.brand{
+  min-width:260px;
+  gap:0;
+}
+
+.site-logo{
+  width:245px !important;
+  height:78px !important;
+  object-fit:contain;
+  transform:none !important;
+  border-radius:12px;
+}
+
+.brand{font-size:0 !important;}
+
+nav{
+  gap:20px;
+  align-items:center;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+nav a{
+  font-size:14px !important;
+  font-weight:750 !important;
+  color:#23314a;
+  padding:9px 4px;
+  transform:none !important;
+  transition:.2s ease;
+}
+
+nav a:hover{
+  color:var(--blue);
+}
+
+.student-actions .btn{
+  border-radius:999px;
+  padding:10px 15px;
+  box-shadow:0 7px 18px rgba(11,74,162,.12);
+}
+
+.btn{
+  border-radius:10px;
+  padding:13px 20px;
+  transition:.2s ease;
+  box-shadow:0 8px 20px rgba(247,198,47,.18);
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.btn-blue{
+  box-shadow:0 8px 20px rgba(11,74,162,.18);
+}
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 82% 18%,rgba(62,137,255,.28),transparent 28%),
+    linear-gradient(135deg,#06183b 0%,#0b4aa2 62%,#126fc1 100%);
+  padding:70px 22px 82px;
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  width:430px;
+  height:430px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:50%;
+  right:-130px;
+  top:-170px;
+}
+
+.hero-container{
+  position:relative;
+  max-width:1280px;
+  grid-template-columns:1.15fr .85fr;
+  gap:55px;
+}
+
+.welcome-brand{
+  display:none;
+}
+
+.hero > .hero-container > div:first-child{
+  grid-column:1;
+}
+
+.badge{
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.25);
+  letter-spacing:.5px;
+  backdrop-filter:blur(8px);
+}
+
+.hero h1{
+  font-size:clamp(46px,6vw,76px);
+  font-weight:900;
+  letter-spacing:-2px;
+}
+
+.hero p{
+  font-size:18px;
+  line-height:1.8;
+  color:#dce8fa;
+}
+
+.hero-card{
+  border:1px solid rgba(255,255,255,.25);
+  box-shadow:0 25px 70px rgba(0,0,0,.28);
+  padding:34px;
+  background:rgba(255,255,255,.98);
+}
+
+.hero-card h2{
+  font-size:30px;
+}
+
+section{
+  padding:85px 22px;
+}
+
+.section-title h2{
+  font-size:42px;
+  font-weight:900;
+  letter-spacing:-1px;
+}
+
+.section-title p{
+  font-size:16px;
+}
+
+.exam-card,.course-card,.faculty-card,.feature,.contact-box{
+  box-shadow:var(--shadow);
+  transition:.25s ease;
+}
+
+.exam-card:hover,.course-card:hover,.faculty-card:hover,.feature:hover{
+  transform:translateY(-7px);
+  box-shadow:0 22px 55px rgba(6,29,73,.14);
+}
+
+.exam-card{
+  border-radius:20px;
+  padding:30px 20px;
+}
+
+.exam-icon{
+  font-size:42px;
+}
+
+.course-card{
+  border-radius:20px;
+}
+
+.course-top{
+  padding:24px;
+}
+
+.course-body{
+  padding:25px;
+}
+
+.faculty-card{
+  border-radius:20px;
+}
+
+.faculty-placeholder{
+  background:linear-gradient(135deg,#0b4aa2,#2b87df);
+  box-shadow:0 10px 25px rgba(11,74,162,.22);
+}
+
+.youtube{
+  background:linear-gradient(135deg,#06183b,#0b4aa2);
+}
+
+.video-card{
+  border-radius:18px;
+  box-shadow:0 15px 40px rgba(0,0,0,.18);
+}
+
+.video-box{
+  border-radius:14px;
+}
+
+.contact-box{
+  border-radius:20px;
+}
+
+footer{
+  background:#06183b !important;
+  padding:55px 22px !important;
+}
+
+footer h2{
+  font-size:28px;
+}
+
+@media(max-width:1050px){
+  .navbar{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .brand{
+    width:100%;
+    justify-content:center;
+  }
+  nav{
+    width:100%;
+  }
+  .student-actions{
+    width:100%;
+    justify-content:center;
+  }
+}
+
+@media(max-width:700px){
+  .navbar{
+    padding:10px 12px 14px;
+  }
+  .site-logo{
+    width:215px !important;
+    height:68px !important;
+  }
+  nav{
+    overflow-x:auto;
+    flex-wrap:nowrap;
+    justify-content:flex-start;
+    padding:4px 2px 8px;
+  }
+  nav a{
+    white-space:nowrap;
+  }
+  .student-actions{
+    flex-wrap:wrap;
+  }
+  .hero{
+    padding:55px 18px 65px;
+  }
+  .hero-container{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+  .hero h1{
+    font-size:46px;
+    letter-spacing:-1px;
+  }
+  .section-title h2{
+    font-size:34px;
+  }
+  .exam-grid,.course-grid,.faculty-grid,.feature-grid,.video-grid{
+    grid-template-columns:1fr;
+  }
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+  
+.brand-name{
+  display:block;
+  color:#0b4aa2;
+  font-size:28px;
+  line-height:1.05;
+  font-weight:950;
+  letter-spacing:.3px;
+  max-width:250px;
+}
+@media(max-width:1050px){
+  .brand-name{font-size:25px;max-width:230px;}
+}
+@media(max-width:700px){
+  .brand-name{font-size:20px;max-width:180px;}
+  .site-logo{width:150px !important;height:62px !important;}
+  .brand{min-width:0;}
+}
+
+  </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="navbar">
+
+    <a href="#home" class="brand" aria-label="Ocean Study Classes Home">
+  <img src="./ocean-study-classes-logo.jpg" class="site-logo" alt="Ocean Study Classes Logo">
+  <span class="brand-name">OCEAN STUDY CLASSES</span>
+</a>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#exams">Exams</a>
+      <a href="#courses">Courses</a>
+      <a href="#faculty">Faculty</a>
+      <a href="online-test-categories.html">Online Test</a>
+      <a href="ebook.html">Current Affairs E-Book</a>
+      <a href="#youtube">YouTube</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="student-actions">
+      <a href="student-login.html" class="btn">🎓 Student Login</a>
+      <a href="student-profile.html" class="btn btn-blue">👤 Student Profile</a>
+    </div>
+
+  </div>
+</header>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+  <div class="hero-container">
+      <div class="welcome-brand">
+        <div class="welcome-title">OCEAN STUDY CLASSES</div>
+        <div class="welcome-motto">Your Success • Our Passion</div>
+      </div>
+      
+
+    <div>
+
+      <span class="badge">
+        SSC • BANKING • RAILWAY • UPSC • POLICE
+      </span>
+
+      <h1>
+        Prepare Today.<br>
+        <span class="yellow">Achieve Tomorrow.</span>
+      </h1>
+
+      <p>
+        Welcome to Ocean Study Classes — a focused learning platform
+        for competitive examination preparation with quality teaching,
+        regular practice and exam-oriented guidance.
+      </p>
+
+      <a href="#courses" class="btn">
+        Explore Courses →
+      </a>
+
+      <a href="#contact"
+         class="btn btn-blue"
+         style="margin-left:8px;">
+        Contact Us
+      </a>
+
+    </div>
+
+
+    <div class="hero-card">
+
+      <h2>OCEAN STUDY CLASSES</h2>
+
+      <p class="motto">
+        Your Success Our Passion
+      </p>
+<hr>
+
+      <p>
+        <strong>📍 Address</strong><br>
+        Opp. ASM Polytechnic, Krishna Vihar,
+        Mathura (UP)
+      </p>
+
+      <p style="margin-top:15px;">
+        <strong>📞 Contact</strong><br>
+        7048918075
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- EXAMS -->
+<section id="exams">
+
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Target Your Exam</h2>
+      <p>
+        Complete preparation for major competitive examinations.
+      </p>
+    </div>
+
+    <div class="exam-grid">
+
+      <div class="exam-card">
+        <div class="exam-icon">🎯</div>
+        <h3>SSC</h3>
+        <p>CGL • CHSL • Other SSC Exams</p>
+      </div>
+
+      <div class="exam-card">
+        <div class="exam-icon">🏦</div>
+        <h3>Banking</h3>
+        <p>SBI • IBPS • PO • Clerk</p>
+      </div>
+
+      <div class="exam-card">
+        <div class="exam-icon">🚆</div>
+        <h3>Railway</h3>
+        <p>NTPC • Group D • Other Exams</p>
+      </div>
+
+      <div class="exam-card">
+        <div class="exam-icon">🇮🇳</div>
+        <h3>UPSC</h3>
+        <p>Prelims + Mains Preparation</p>
+      </div>
+
+      <div class="exam-card">
+        <div class="exam-icon">📜</div>
+        <h3>UPPCS</h3>
+        <p>Prelims + Mains</p>
+      </div>
+
+      <div class="exam-card">
+        <div class="exam-icon">👮</div>
+        <h3>UP Police</h3>
+        <p>Complete Exam Preparation</p>
+      </div>
+
+      <div class="exam-card">
+        <div class="exam-icon">🚔</div>
+        <h3>Delhi Police</h3>
+        <p>Exam-Oriented Preparation</p>
+      </div>
+
+      <div class="exam-card">
+        <div class="exam-icon">📖</div>
+        <h3>Other Exams</h3>
+        <p>Regular Practice & Guidance</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- COURSES -->
+<section class="light" id="courses">
+  <div class="container">
+    <div class="section-title">
+      <h2>Our Courses</h2>
+      <p>Choose your target and start your preparation.</p>
+    </div>
+
+    <div class="course-grid">
+
+      <div class="course-card">
+        <div class="course-top">
+          <h3>SSC</h3>
+          <p>Full Foundation</p>
+        </div>
+        <div class="course-body">
+          <ul>
+            <li>✓ Complete Foundation</li>
+            <li>✓ Regular Practice</li>
+            <li>✓ Duration: 1 Year</li>
+          </ul>
+          <div class="price">₹17,999</div>
+          <a href="ssc.html" class="btn btn-blue">View SSC Course →</a>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-top">
+          <h3>UPSC</h3>
+          <p>Foundation Course</p>
+        </div>
+        <div class="course-body">
+          <ul>
+            <li>✓ Prelims + Mains</li>
+            <li>✓ 20 Tests</li>
+            <li>✓ Duration: 1 Year</li>
+          </ul>
+          <div class="price">₹50,000</div>
+          <a href="upsc.html" class="btn btn-blue">View UPSC Course →</a>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-top">
+          <h3>UPPSC</h3>
+          <p>Foundation Course</p>
+        </div>
+        <div class="course-body">
+          <ul>
+            <li>✓ Prelims + Mains</li>
+            <li>✓ 20 Tests</li>
+            <li>✓ Duration: 1 Year</li>
+          </ul>
+          <div class="price">₹40,000</div>
+          <a href="uppsc.html" class="btn btn-blue">View UPPSC Course →</a>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-top">
+          <h3>UP Police</h3>
+          <p>Complete Preparation</p>
+        </div>
+        <div class="course-body">
+          <ul>
+            <li>✓ Exam-Oriented Classes</li>
+            <li>✓ Practice Tests</li>
+            <li>✓ Duration: 6 Months</li>
+          </ul>
+          <div class="price">₹9,999</div>
+          <a href="up-police.html" class="btn btn-blue">View UP Police Course →</a>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-top">
+          <h3>Banking</h3>
+          <p>Banking Foundation</p>
+        </div>
+        <div class="course-body">
+          <ul>
+            <li>✓ Complete Banking Preparation</li>
+            <li>✓ Regular Practice Tests</li>
+            <li>✓ Exam-Oriented Classes</li>
+          </ul>
+          <div class="price">Course Details</div>
+          <a href="banking.html" class="btn btn-blue">View Banking Course →</a>
+        </div>
+      </div>
+
+      <div class="course-card">
+        <div class="course-top">
+          <h3>Railway</h3>
+          <p>NTPC / Group D Foundation</p>
+        </div>
+        <div class="course-body">
+          <ul>
+            <li>✓ NTPC + Group D</li>
+            <li>✓ Complete Foundation</li>
+            <li>✓ Duration: 8 Months</li>
+          </ul>
+          <div class="price">Course Details</div>
+          <a href="railway%20.html" class="btn btn-blue">View Railway Course →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- WHY US -->
+<section>
+
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Why Ocean Study Classes?</h2>
+      <p>
+        Learn with a structured and practice-focused approach.
+      </p>
+    </div>
+
+    <div class="feature-grid">
+
+      <div class="feature">
+        <div class="feature-icon">👨‍🏫</div>
+        <h3>Expert Teaching</h3>
+        <p>
+          Concept-focused classes designed for competitive exams.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">📝</div>
+        <h3>Regular Tests</h3>
+        <p>
+          Practice questions and tests to improve preparation.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">📚</div>
+        <h3>Study Material</h3>
+        <p>
+          Topic-wise notes, formulas and exam-oriented material.
+        </p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">🎯</div>
+        <h3>Exam Focus</h3>
+        <p>
+          Preparation designed around competitive examination needs.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FACULTY -->
+
+<section class="light" id="faculty">
+
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Our Faculty</h2>
+      <p>
+        Meet the educators of Ocean Study Classes.
+      </p>
+    </div>
+
+    <div class="faculty-grid">
+
+      <div class="faculty-card">
+        <div class="faculty-placeholder">MR</div>
+        <h3>Mohit Rajput Sir</h3>
+        <p>Mathematics</p>
+      </div>
+
+      <div class="faculty-card">
+        <div class="faculty-placeholder" aria-label="Sanaya Ma'am photo not available">
+          SM
+        </div>
+        <h3>SANAYA MA'AM</h3>
+        <p>Reasoning & English</p>
+      </div>
+
+      <div class="faculty-card">
+        <div class="faculty-placeholder">RM</div>
+        <h3>Rishika Ma'am</h3>
+        <p>GK / GS & Current Affairs</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- YOUTUBE -->
+<section class="youtube" id="youtube">
+
+  <div class="container">
+
+    <div class="section-title">
+
+      <h2>Ocean Study Classes on YouTube</h2>
+
+      <p>
+        Regular classes, practice sets and exam preparation.
+      </p>
+
+    </div>
+
+    <div class="video-grid">
+
+      <div class="video-card">
+        <div class="video-box">▶</div>
+        <h3>SSC CGL Maths Practice</h3>
+        <p>Exam-oriented Mathematics practice.</p>
+      </div>
+
+      <div class="video-card">
+        <div class="video-box">▶</div>
+        <h3>GK / GS Practice Set</h3>
+        <p>Regular GK and GS question practice.</p>
+      </div>
+
+      <div class="video-card">
+        <div class="video-box">▶</div>
+        <h3>Reasoning Practice</h3>
+        <p>Important reasoning topics and questions.</p>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:35px;">
+     <a href="https://youtube.com/@oceanstudyclasses8077" 
+   target="_blank" 
+   class="btn">
+  Visit YouTube Channel
+</a> 
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Contact Us</h2>
+      <p>
+        Start your preparation with Ocean Study Classes.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+
+      <div class="contact-box">
+
+        <h2>📍 Visit Our Centre</h2>
+
+        <div class="contact-item">
+          <strong>Address</strong>
+          Opp. ASM Polytechnic, Krishna Vihar,
+          Mathura (UP)
+        </div>
+
+        <div class="contact-item">
+          <strong>Phone</strong>
+          7048918075
+        </div>
+
+        <div class="contact-item">
+          <strong>Courses</strong>
+          SSC • Banking • Railway • UPSC • UPPCS
+          • UP Police • Delhi Police
+        </div>
+
+      </div>
+
+
+      <div class="contact-box">
+
+        <h2>🚀 Admission Enquiry</h2>
+
+        <p style="margin:18px 0;">
+          Contact us for batch timings, admissions,
+          courses and fee details.
+        </p>
+
+        <a
+          href="tel:7048918075"
+          class="btn btn-blue">
+          📞 Call Now
+        </a>
+
+        <a
+          href="https://wa.me/917048918075"
+          target="_blank"
+          class="btn"
+          style="margin-left:8px;">
+          WhatsApp
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+  <h2>OCEAN STUDY CLASSES</h2>
+
+  <p class="motto">
+    Your Success Our Passion
+  </p>
+
+  <p style="margin-top:15px;">
+    SSC • Banking • Railway • UPSC • UPPCS •
+    UP Police • Delhi Police
+  </p>
+
+  <p style="margin-top:20px;font-size:13px;">
+    © 2026 Ocean Study Classes. All Rights Reserved.
+  </p>
+
+</footer>
+
+</body>
+</html>
+
