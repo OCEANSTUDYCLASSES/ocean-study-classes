@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Material Library | Ocean Study Classes</title>
+  <meta name="description" content="Access Maths Formula Books, GK GS Notes, Current Affairs and Practice Sets at Ocean Study Classes, Mathura.">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f7fc;
+      color: #172554;
+    }
+    header {
+      background: #082f66;
+      color: white;
+      text-align: center;
+      padding: 28px 16px;
+    }
+    header h1 { margin: 0 0 8px; }
+    header p { margin: 0; color: #dbeafe; }
+    .container {
+      max-width: 1050px;
+      margin: auto;
+      padding: 24px 16px;
+    }
+    .search {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px #0f172a12;
+      border: 1px solid #e2e8f0;
+    }
+    .card .emoji { font-size: 32px; }
+    .card h2 { font-size: 19px; margin: 12px 0 8px; }
+    .card p { color: #64748b; line-height: 1.5; }
+    .btn {
+      display: inline-block;
+      background: #087eec;
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+    .note {
+      background: #e0f2fe;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 22px;
+      color: #075985;
+      line-height: 1.5;
+    }
+    footer {
+      text-align: center;
+      padding: 22px;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📚 Study Material Library</h1>
+    <p>Ocean Study Classes — Your Success, Our Passion</p>
+    <p>Mathura, Uttar Pradesh</p>
+  </header>
+
+  <main class="container">
+    <input
+      class="search"
+      id="search"
+      type="search"
+      placeholder="Search study materials..."
+      aria-label="Search study materials"
+    >
+
+    <div class="grid" id="materials">
+      <article class="card">
+        <div class="emoji">🧮</div>
+        <h2>Maths Formula Book</h2>
+        <p>Formulas and revision notes for competitive examinations.</p>
+        <a class="btn" href="#" data-placeholder>Material coming soon</a>
+      </article>
+
+      <article class="card">
+        <div class="emoji">🌏</div>
+        <h2>GK / GS Notes</h2>
+        <p>History, Geography, Polity, Economy and General Science.</p>
+        <a class="btn" href="#" data-placeholder>Material coming soon</a>
+      </article>
+
+      <article class="card">
+        <div class="emoji">📰</div>
+        <h2>Current Affairs</h2>
+        <p>Monthly current affairs and important exam updates.</p>
+        <a class="btn" href="#" data-placeholder>Material coming soon</a>
+      </article>
+
+      <article class="card">
+        <div class="emoji">🧠</div>
+        <h2>Reasoning Practice</h2>
+        <p>Practice questions and revision material for exams.</p>
+        <a class="btn" href="#" data-placeholder>Material coming soon</a>
+      </article>
+
+      <article class="card">
+        <div class="emoji">🔤</div>
+        <h2>English Vocabulary</h2>
+        <p>Vocabulary, synonyms and other English study notes.</p>
+        <a class="btn" href="#" data-placeholder>Material coming soon</a>
+      </article>
+
+      <article class="card">
+        <div class="emoji">📝</div>
+        <h2>Practice Sets</h2>
+        <p>Practice material for SSC, UP Police and other exams.</p>
+        <a class="btn" href="#" data-placeholder>Material coming soon</a>
+      </article>
+    </div>
+
+    <div class="note">
+      <strong>Note:</strong> Study materials will be added here.
+      PDF links will become available after they are uploaded.
+    </div>
+  </main>
+
+  <footer>
+    © Ocean Study Classes. All rights reserved.
+  </footer>
+
+  <script>
+    const search = document.getElementById("search");
+    const cards = document.querySelectorAll(".card");
+
+    search.addEventListener("input", function () {
+      const query = this.value.toLowerCase().trim();
+
+      cards.forEach(function (card) {
+        card.hidden = !card.textContent.toLowerCase().includes(query);
+      });
+    });
+
+    document.querySelectorAll("[data-placeholder]").forEach(function (link) {
+      link.addEventListener("click", function (event) {
+        event.preventDefault();
+        alert("Study material will be added soon.");
+      });
+    });
+  </script>
+</body>
+</html>
