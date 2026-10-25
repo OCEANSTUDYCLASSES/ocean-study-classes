@@ -4,11 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  ```html
 <title>Ocean Study Classes Mathura | SSC, UP Police & UPSC</title>
 
 <meta name="description" content="Ocean Study Classes, Mathura mein SSC, UP Police, UPSC, UPPSC aur Railway exams ki taiyari karein. Offline classes aur online tests ki jankari paayein.">
-```
 
   <style>
     * {
@@ -1030,10 +1028,32 @@ footer h2{
   }
 }
 
+
+/* PARAKH TEST SERIES popup */
+.parakh-modal{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(2,10,28,.82);backdrop-filter:blur(5px)}
+.parakh-modal.is-open{display:flex}
+.parakh-dialog{position:relative;width:min(560px,94vw);max-height:92vh;display:flex;flex-direction:column;align-items:center;gap:12px}
+.parakh-poster{display:block;max-width:100%;max-height:78vh;width:auto;height:auto;object-fit:contain;border-radius:12px;box-shadow:0 18px 60px rgba(0,0,0,.45)}
+.parakh-close{position:absolute;top:-12px;right:-10px;z-index:2;width:42px;height:42px;border:2px solid #fff;border-radius:50%;background:#06183b;color:#fff;font-size:28px;line-height:1;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.parakh-cta{display:inline-block;background:#ffc400;color:#071b3f;text-decoration:none;font-weight:900;padding:12px 24px;border-radius:999px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+body.parakh-modal-open{overflow:hidden}
+@media(max-width:600px){.parakh-dialog{width:min(94vw,430px)}.parakh-poster{max-height:76vh}.parakh-close{right:-4px;top:-8px}}
+
 </style>
 </head>
 
 <body>
+
+<!-- PARAKH TEST SERIES poster popup -->
+<div class="parakh-modal" id="parakhModal" role="dialog" aria-modal="true" aria-label="PARAKH Test Series poster">
+  <div class="parakh-dialog">
+    <button class="parakh-close" id="parakhClose" type="button" aria-label="Close poster">&times;</button>
+    <img class="parakh-poster" src="./parakh-test-series.png" alt="Ocean Study Classes PARAKH Test Series — Saturday and Sunday Offline Mock Test">
+    <a class="parakh-cta" href="https://wa.me/917048918075?text=Namaste%2C%20mujhe%20PARAKH%20Test%20Series%20ki%20admission%20details%20chahiye." target="_blank" rel="noopener noreferrer">ADMISSION ENQUIRY ↗</a>
+  </div>
+</div>
+
+
 
 <!-- HEADER -->
 <header>
@@ -1567,6 +1587,30 @@ function closeMobileMenu(){
   btn.setAttribute('aria-expanded','false');
   btn.textContent='☰';
 }
+
+
+// Show the PARAKH poster once per browser tab session.
+(function(){
+  const modal = document.getElementById('parakhModal');
+  const closeBtn = document.getElementById('parakhClose');
+  if (!modal || !closeBtn) return;
+  function closePoster(){
+    modal.classList.remove('is-open');
+    document.body.classList.remove('parakh-modal-open');
+    try { sessionStorage.setItem('parakhPosterDismissed', '1'); } catch(e) {}
+  }
+  closeBtn.addEventListener('click', closePoster);
+  modal.addEventListener('click', function(event){ if(event.target === modal) closePoster(); });
+  document.addEventListener('keydown', function(event){ if(event.key === 'Escape' && modal.classList.contains('is-open')) closePoster(); });
+  let dismissed = false;
+  try { dismissed = sessionStorage.getItem('parakhPosterDismissed') === '1'; } catch(e) {}
+  if (!dismissed) {
+    window.addEventListener('load', function(){
+      modal.classList.add('is-open');
+      document.body.classList.add('parakh-modal-open');
+    });
+  }
+})();
 </script>
 
 </body>
